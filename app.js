@@ -90,9 +90,7 @@ app.get('/admin/:userId', function(request, response, next){
 
 // Baby
 app.get('/babyList', authorize, baby.getBabies);
-app.get('/baby', authorize, function(request, response, next){	
-	return response.render('babyInfo'); //, request.classes, request.branches);	
-});
+app.get('/baby', authorize, baby.getRefData);
 app.get('/babyList/:babyId', authorize, function(request, response, next){	
 	return response.render('babyInfo', request.classes, request.branches);	
 });
@@ -103,6 +101,7 @@ app.get('/teacherList', authorize, teacher.getTeachers);
 app.get('/teacher/:teacherId', authorize, function(request, response, next){
 	return response.render('teacherInfo', request.classes, request.branches);
 });
+app.get('/teacherInfo', authorize, teacher.getRefData);
 
 // Create server
 http.createServer(app).listen(app.get('port'),function(){

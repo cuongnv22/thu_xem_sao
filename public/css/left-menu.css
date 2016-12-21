@@ -1,4 +1,6 @@
 /********* SIDE NAV BAR ***********/
+@import url('https://fonts.googleapis.com/css?family=Itim');
+.font-face-itim{font-family: 'Itim' !important; font-size: 14px;}
 a {
 color:#000;
 }
@@ -126,8 +128,12 @@ ul.list-group  li a:hover, ul li a:focus {
   }
 }
 
-.test {
+.leftsidebar {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
+}
+
+a.active {
+    background-color : grey;
 }

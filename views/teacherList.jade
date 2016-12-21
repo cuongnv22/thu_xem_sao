@@ -6,27 +6,93 @@ html
 		meta(http-equiv="content-type", content="text/html; charset=UTF-8")
 		link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
 		link(rel='stylesheet', href='/css/jquery.dataTables.min.css')
+		link(rel='stylesheet', href='/css/left-menu.css')
 		link(rel='stylesheet', href='/css/style_custom.css')
-		link(rel='stylesheet', href='/css/dashboard.css')
-		
+		link(rel='stylesheet', href='/css/detail.css')
+				
 		script(type='text/javascript', src='/js/jquery.min.js')
 		script(type='text/javascript', src='/js/bootstrap.js')		
 		script(type='text/javascript', src='/js/jquery.dataTables.js')
 		script(type='text/javascript', src='/js/navigate.js')
 		
 	body
-		nav.navbar.navber-fixed-top.navbar-cust
+		nav.navbar.navbar-fixed-top.navbar-cust
 			div.container-fluid
 				div.navbar-header
-					a.navbar-brand(href="#") Truong mam non
-		div.container-fluid
+					a.navbar-brand(href="/") Truong Mam Non
+		div#leftmenu.container-fluid.font-face-itim
 			div.row
 				div.col-sm-3.col-md-2.sidebar
-					ul.nav.nav-sidebar
-						li.active
-							a(href="/babyList") Danh sách bé
-						li
-							a(href="/teacherList") Danh sách giáo viên
+					div#sidenav1.leftsidebar
+						div.navbar-header
+							button.navbar-toggle(data-toggle="collapse", data-target="#sideNavbar")
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+						div#sideNavbar.collapse.navbar-collapse
+							div#accordion.panel-group
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseOne")
+												span.glyphicon.glyphicon-baby-formula
+												| Quản Lý Học Sinh
+												span.caret
+									div#collapseOne.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/babyList") Danh Sách Học Sinh
+												a.navlink(href="#") Điểm Danh
+												a.navlink(href="/baby") Tạo Mới Học Sinh
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFour")
+												span.glyphicon.glyphicon-baby-formula
+												| Quản Lý Thu Chi
+												span.caret
+									div#collapseFour.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="#") Quản Lý Thu
+												a.navlink(href="#") Quản Lý Chi												
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseTwo")
+												span.glyphicon.glyphicon-education
+												| Quản Lý Nhân Viên
+												span.caret
+									div#collapseTwo.panel-collapse.collapse.in
+										ul.list-group
+											li
+												a.navlink.active(href="/teacherList") Danh sách Nhân Viên
+												a.navlink(href="#") Chấm Công
+												a.navlink(href="/teacher") Tạo Mới Nhân Viên
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseThree")
+												span.glyphicon.glyphicon-user
+												| Quản Lý Tài khoản
+												span.caret
+									div#collapseThree.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/teacherList") Danh Sách Người Dùng
+												a.navlink(href="/teacher") Tạo Mới Người Dùng
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFive")
+												span.glyphicon.glyphicon-user
+												| Quản Lý Chỉ Mục
+												span.caret
+									div#collapseFive.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/teacherList") Danh sách Chỉ Mục
+												a.navlink(href="/teacher") Tạo Mới Chỉ Mục
 				div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
 					if(babies == null || babies.length == 0)
 						p

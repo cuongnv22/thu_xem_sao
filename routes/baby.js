@@ -96,9 +96,11 @@ exports.populateData = function(babyId, request, callback) {
     	if (error) return callback(error, {classes : classes, branches : branches, baby : baby});;
     	
     	return callback(null, {classes : classes, branches : branches, baby : baby});
-  	});
+  	});	
+}
 
-	
+exports.getRefData = function(request, response, next) {
+	response.render('babyInfo', {classes : classes, branches : branches, baby : null});
 }
 
 exports.getBabies = function(request, response, next) {

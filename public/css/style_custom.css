@@ -7,6 +7,8 @@
 
 body{ background:url(../images/px1.jpg) #fcf4db; border:0; font: 13px "Open Sans", Arial, Helvetica, sans-serif; color:#5e4d38 ; line-height:18px; min-width:320px;}
 #baby-form .form-label-cust{font-family: 'Itim'; font-size: 18px;}
+#leftmenu .font-face-itim{font-family: 'Itim'; font-size: 14px;}
+
 .navbar-cust {
   background: url(../images/bg1.jpg) 0 0 repeat-x;"
   /*background-color: #007FFF;*/
@@ -17,7 +19,7 @@ body{ background:url(../images/px1.jpg) #fcf4db; border:0; font: 13px "Open Sans
 .bigHr {
     background-color: dimgrey !important;
     color: dimgrey !important;    
-    height: 2px !important;    
+    height: 1px !important;    
 }
 .error{
 	color : red;
