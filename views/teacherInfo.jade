@@ -1,0 +1,116 @@
+doctype html
+html
+	head
+		title='Teacher'
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+		link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
+		
+		link(rel='stylesheet', href='/css/camera.css')
+		link(rel='stylesheet', href='/css/style_custom.css')
+		link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
+		link(rel='stylesheet', href='/resources/demos/style.css')
+		link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css')
+		link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.bootstrap.min.css')
+		link(rel='stylesheet', href='/css/dashboard.css')
+		link(rel='stylesheet', href='/css/detail.css')
+		
+		
+		script(type='text/javascript', src='https://code.jquery.com/jquery-1.12.4.js')
+		script(type='text/javascript', src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+		script(type='text/javascript', src='/js/tab.js')
+		script(type='text/javascript', src='/js/controls.js')
+		script(type='text/javascript', src='//cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js')
+		script(type='text/javascript', src='/js/validate.js')
+		
+	body	 
+		nav.navbar.navbar-fixed-top.navbar-cust
+			div.container-fluid
+				div.navbar-header
+					a.navbar-brand(href="#") Truong mam non
+		div.container-fluid
+			div.row
+				div.col-sm-3.col-md-2.sidebar
+					ul.nav.nav-sidebar
+						li.active
+							a(href="/babyList") Danh sách học sinh
+							ul.nav.nav-sidebar
+								li
+									a(href="/babyList") Danh sách bé
+								li
+									a(href="#")	Tạo mới
+						li
+							a(href="/teacherList") Quản lý giáo viên
+				div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main					
+					#tabs
+						ul
+							li
+								a(href="#tabs-1") Thông tin cơ bản
+							li
+								a(href="#tabs-2") Thông tin mở rộng
+						#tabs-1
+							div= error			
+							#fields
+								form#baby-form.form-horizontal(action="baby" method="POST" role="form" novalidate)
+									.row							
+										div.form-group
+											label.control-label.form-label-cust.col-sm-2(for="name") Họ tên bé :
+											div.col-sm-3
+												input#name.form-control(name="name", type="text", placeHolder="Họ tên bé", value= name, required, data-required-msg='Tên không để trống'  data-available data-available-url="validate/username" data-available-msg="The username #: data # is not available")		
+										
+											label.control-label.form-label-cust.col-sm-2(for="fname") Tên thân mật :
+											div.col-sm-3
+												input#fname.form-control(name="fname", type="text", placeHolder="Tên thân mật", value= fname)				
+										div.form-group																										
+											label.control-label.form-label-cust.col-sm-2(for="gender-input") Giới tính :						
+											div.col-sm-3
+												label.radio-inline
+													input(name="gender", type="radio",  value= "1", checked=gender=="male") 
+													| Nam										
+												label.radio-inline
+													input(name="gender", type="radio",  value= "0", checked=gender=="male")
+													| Nữ								
+											label.control-label.form-label-cust.col-sm-2(for="DOB") Ngày sinh :
+											div.col-sm-3
+												input#dob.datecontrol(data-date-format="dd/mm/yy" name="dob" value= dob, required, data-required-msg='Ngày sinh không để trống'  data-available data-available-url="validate/dob" data-available-msg="The username #: data # is not available")		
+										div.form-group
+											label.control-label.form-label-cust.col-sm-2(for="address") Địa chỉ :
+											div.col-sm-10
+												input#address.form-control.input-lg(name="address", type="text", placeHolder="Địa chỉ", value= address)
+										
+											
+																				
+										div.form-group
+											label.form-label-cust.control-label.col-sm-2(for="note_1") Ghi chú :
+											div.col-sm-10
+												textarea#note_1.form-control(name="note_1", placeHolder="Ghi chú", value= note_1, rows="3")							
+										hr
+																		
+										div.form-group
+											label.control-label.col-sm-2.form-label-cust(for="faname") Họ tên bố :
+											div.col-sm-3
+												input#faname.form-control(name="faname", type="text", placeHolder="Họ tên bố", value= fatherName)
+											
+											label.control-label.col-sm-2.form-label-cust(for="phone") Số điện thoại :
+											div.col-sm-3
+												input#phone.form-control(type="text" name="phone" placeHolder="Số điện thoại" value= phone, required, data-required-msg='Số điện thoại không để trống'  data-available data-available-url="validate/phone" data-available-msg="The  #: data # is not available")
+										div.form-group
+											label.control-label.col-sm-2.form-label-cust(for="mname") Họ tên mẹ :
+											div.col-sm-3
+												input#mname.form-control(name="mname", type="text", placeHolder="Họ tên mẹ", value= mname)
+											label.control-label.col-sm-2.form-label-cust(for="fname") Số điện thoại mẹ :
+											div.col-sm-3
+												input#mphone.form-control(type="text" name="mphone" placeHolder="Số điện thoại mẹ" value= mphone)
+										div.form-group
+											label.control-label.col-sm-2.form-label-cust(for="email") Email liên lạc :
+											div.col-sm-3
+												input#email.form-control(name="email", type="text", placeHolder="Email", value= email)							
+											label.control-label.form-label-cust.col-sm-2(for="note_2") Ghi chú :
+											div.col-sm-5
+												textarea#note_2.form-control(name="note_2", type="text", placeHolder="Ghi chú", value= note_2,rows="3")						
+										
+																			
+									button.btn-info.btn-lg(type="submit") Lưu lại
+									include messages 				
+							
+			

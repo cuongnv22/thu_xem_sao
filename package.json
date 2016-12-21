@@ -1,0 +1,29 @@
+{
+  "name": "pre-school",
+  "version": "1.0.0",
+  "description": "Truong mam non",  
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+"dependencies": {
+"body-parser": "1.6.6",
+"cookie-parser": "1.3.2",
+"csurf": "1.5.0",
+"errorhandler": "1.1.1",
+"express": "4.8.1",
+"express-session": "1.7.6",
+"jade": "1.5.0",
+ "express-validator": "~3.0.0",
+"less-middleware": "1.0.4",
+"method-override": "2.1.3",
+"mongoskin": "1.4.4",
+"morgan": "1.2.3",
+"serve-favicon": "2.1.1",
+"consolidate": "^0.10.0",
+"monk": "^1.0.1",
+"everyauth": "~0.4.5"
+},
+  "author": "",
+  "license": "ISC"
+}

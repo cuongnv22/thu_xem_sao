@@ -1,0 +1,108 @@
+doctype html
+html
+	head
+		title='Users'
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+		link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
+		link(rel='stylesheet', href='/css/jquery.dataTables.min.css')
+		link(rel='stylesheet', href='/css/style_custom.css')
+		link(rel='stylesheet', href='/css/left-menu.css')
+		
+		script(type='text/javascript', src='/js/jquery.min.js')
+		
+		script(type='text/javascript', src='/css/bootstrap-3.3.7-dist/js/bootstrap.js')		
+		script(type='text/javascript', src='/js/jquery.dataTables.js')
+		script(type='text/javascript', src='/js/navigate.js')
+		
+	body
+		nav.navbar.navber-fixed-top.navbar-cust
+			div.container-fluid
+				div.navbar-header
+					a.navbar-brand(href="#") Truong mam non
+		div.container-fluid
+			div.row
+				div.col-sm-3.col-md-2.sidebar
+					div#sidenav1.test
+						div.navbar-header
+							button.navbar-toggle(data-toggle="collapse", data-target="#sideNavbar")
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+						div#sideNavbar.collapse.navbar-collapse
+							div#accordion.panel-group
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseOne")
+												span.glyphicon.glyphicon-baby-formula
+												| Quản Lý Học Sinh
+												span.caret
+									div#collapseOne.panel-collapse.collapse.in
+										ul.list-group
+											li
+												a.navlink(href="/babyList") Danh sách học sinh
+												a.navlink(href="/baby") Tạo mới học sinh
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseTwo")
+												span.glyphicon.glyphicon-education
+												| Quản Lý Giáo viên
+												span.caret
+									div#collapseTwo.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/teacherList") Danh sách giáo viên
+												a.navlink(href="/teacher") Tạo mới giáo viên
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseThree")
+												span.glyphicon.glyphicon-user
+												| Quản Lý Tài khoản
+												span.caret
+									div#collapseThree.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/teacherList") Danh sách người dùng
+												a.navlink(href="/teacher") Tạo mới người dùng
+				div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+					if(babies == null || babies.length == 0)
+						p
+							| Chưa có dữ liệu. Tạo thông tin về 
+							a(href="/baby") Bé
+							|.
+					else
+						table#baby-grid.table.table-hover.table-striped
+							thead
+								tr
+									th Họ Tên
+									th Tên Thân Mật
+									th Số Điện Thoại Bố	
+									th Số Điện Thoại Mẹ
+									th Email						
+									th Chi Nhánh
+									th Lớp
+									th Ghi chú
+									th Actions	
+									th 
+							tbody
+								each baby, index in babies
+									tr(data-id="#{baby._id}")
+										td= baby.name
+										td= baby.fname
+										td= baby.phone
+										td= baby.mphone
+										td= baby.email
+										td= baby.class
+										td= baby.branch
+										td= baby.note_1
+										td.action
+											button.btn.btn-default(id="edit_#{baby._id}", type="button")
+												span.glyphicon.glyphicon-pencil Sửa
+										td.action
+											button.btn.btn-danger(id="edit_#{baby._id}", type="button")
+												span.glyphicon.glyphicon-remove Xóa
+										
+

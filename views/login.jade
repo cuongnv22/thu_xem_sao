@@ -1,0 +1,19 @@
+doctype html
+html
+	head
+		title='Login'
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+		link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')		
+		link(rel='stylesheet', href='/css/signin.css')
+		link(rel='stylesheet', href='/css/style_custom.css')
+	body
+		div.container
+			form.form-signin(method="POST" role="form")
+				h2.form-signin-heading Đăng Nhập
+				div.error= error
+				label.sr-only(for="inputEmail") Email 
+				input#inputEmail.form-control(name="email",type="email" placeHolder="Email" autofocus)
+				label.sr-only(for="inputPassword") Mật khẩu
+				input#inputPassword.form-control(name="password", type="password", placeHolder="Password" required)
+				button.btn.btn-lg.btn-primary.btn-block(type="submit") Đăng nhập
