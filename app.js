@@ -8,7 +8,7 @@ var engines = require('consolidate');
 var baby = require('./routes/baby');
 var teacher = require('./routes/teacher');
 var user =  require('./routes/user');
-var appartment = require('./routes/apartment');
+var apartment = require('./routes/apartment');
 var bodyParser = require('body-parser');
 var validator = require('express-validator');
 var session = require('express-session')
@@ -109,7 +109,9 @@ app.get('/teacherInfo', authorize, teacher.getRefData);
 app.get('/babyAttendance', baby.getTimeTables);
 
 // Apartment
-app.get('/apartment/:id', appartment.populateData);
+app.get('/apartment/:id', apartment.populateData);
+app.post('/apartment/:id', apartment.addOrUpdateApartment);
+app.get('/apartmentStatistic', apartment.getStatistic);
 
 // Create server
 http.createServer(app).listen(app.get('port'),function(){

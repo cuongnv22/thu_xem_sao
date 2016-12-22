@@ -64,4 +64,81 @@ exports.populateData = function(request, response, next) {
 										});
 		});
 	});		
-}
+};
+
+exports.addOrUpdateApartment = function(request, response, next) {
+	var apartmentId = request.params.id;
+	var person_no = request.body.person_no;
+	var person_names = request.body.person_names;
+	var room_fee = request.body.room_fee;
+	var p_electric_no = request.body.p_electric_no;
+	var c_electric_no = request.body.c_electric_no;
+	var p_water_no = request.body.p_water_no;
+	var c_water_no = request.body.c_water_no;
+	var total_electric = request.body.total_electric;
+	var total_water = request.body.total_water;
+	var clean_fee = request.body.clean_fee;
+	var other_fee = request.body.other_fee;
+	var total_fee = request.body.total_fee;
+
+	var currentDate = new Date();
+	var month = currentDate.getMonth() + 1;
+	var year =  currentDate.getFullYear();
+
+	var apartment_data = {
+		apartmentId : apartmentId,
+		year : year,
+		month : month,
+		person_no : request.body.person_no,
+		person_names : request.body.person_names,
+		room_fee : request.body.room_fee,
+		p_electric_no : request.body.p_electric_no,
+		c_electric_no : request.body.c_electric_no,
+		p_water_no : request.body.p_water_no,
+		c_water_no : request.body.c_water_no,
+		total_electric : request.body.total_electric,
+		total_water : request.body.total_water,
+		clean_fee : request.body.clean_fee,
+		other_fee : request.body.other_fee,
+		total_fee : request.body.total_fee
+	} 
+	
+	request.collections.apartments.findOne({apartmentId: apartmentId}, 
+		function(error, apartment) {
+			if(error) next(error);
+			// update
+			if (apartment != null) {
+
+			}
+			else { // insert
+				request.collections.apartments.insert(apartment_data, function(error, apartmentResponse) {
+				    if (error) return next(error);
+				    	  
+					if (error) {	    
+					  flash = { type: 'alert-danger', messages: errors };
+					  response.send({ flash: flash });	  
+					} else {
+						response.render('apartment', {apartment: apartment, 
+											apartmentId: apartmentId, 
+											month: month, 
+											year: year, 
+											person_names: person_names,
+											person_no : person_no,
+											p_electric_no: p_electric_no,
+											p_water_no: p_water_no,
+											electric_unit: electric_unit,
+											water_unit: water_unit,
+											room_fee: room_fee,
+											clean_fee: clean_fee,
+											other_fee: other_fee
+										});
+					}
+				});
+			}
+		}
+	);
+};
+
+exports.getStatistic = function(request, response, next) {
+	response.render('apartmentStatistic');
+};
