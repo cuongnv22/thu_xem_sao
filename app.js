@@ -28,7 +28,7 @@ app.use(function(request, response, next) {
   return next();
 });
 
-app.set('port', process.env.PORT || 4500);
+app.set('port', process.env.PORT || 4501);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
@@ -102,6 +102,9 @@ app.get('/teacher/:teacherId', authorize, function(request, response, next){
 	return response.render('teacherInfo', request.classes, request.branches);
 });
 app.get('/teacherInfo', authorize, teacher.getRefData);
+
+//
+app.get('/babyAttendance', baby.getTimeTables);
 
 // Create server
 http.createServer(app).listen(app.get('port'),function(){

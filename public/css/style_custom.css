@@ -24,3 +24,12 @@ body{ background:url(../images/px1.jpg) #fcf4db; border:0; font: 13px "Open Sans
 .error{
 	color : red;
 }
+
+.clickable{
+   cursor: pointer;
+   width:10px;
+}
+
+.modal-dialog-cust {
+	/*background-color: #fff;*/
+}

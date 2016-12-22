@@ -30,6 +30,139 @@ var branches = [
 	}
 ]
 
+var timeTables = [
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	},
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	},
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	},
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	},
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	},
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	},
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	},
+	{
+		id: "1",
+		name : 'T2 01',
+		day: '01',		
+	},
+	{
+		id: "2",
+		name : 'T3 02',
+		day: '02',		
+	},
+	{
+		id: "3",
+		name : 'T4 03',
+		day: '03',		
+	}
+];
+
+var absences = [
+	{
+		id : "1",
+		name : "Nghỉ cả ngày"
+	},
+	{
+		id: "2",
+		name : "Nghỉ nửa ngày"
+	}
+]
 //var classes = [ 'no-repeat', 'day', 'week', 'month'];
 var flash = {};
 
@@ -108,5 +241,12 @@ exports.getBabies = function(request, response, next) {
 	request.collections.babyInfo.find({}).toArray(function(error, babies){
 		if (error) return next(error);
 		response.render('babyList',{babies:babies})	;
+	});
+}
+
+exports.getTimeTables = function(request, response, next) {
+	request.collections.babyInfo.find({}).toArray(function(error, babies){
+		if (error) return next(error);
+		response.render('babyAttendance',{babies:babies, timeTables : timeTables, classes : classes, absences: absences});
 	});
 }
