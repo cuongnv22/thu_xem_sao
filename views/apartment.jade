@@ -1,4 +1,4 @@
-extends leftMenu
+extends apartmentMenu
 block head
 	title='Apartment'
 	meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -65,13 +65,13 @@ block content
 									input#p_electric_no.form-control(name="p_electric_no", type="text", placeHolder="Chỉ số điện tháng trước", value= (p_electric_no ? p_electric_no : 0))
 								label.control-label.form-label-cust.col-sm-1(for="c_electric_no") Tháng này (số): 
 								div.col-sm-1
-									input#c_electric_no.form-control(name="c_electric_no", type="text", placeHolder="Chỉ số điện tháng này", value= (c_electric_no ? c_electric_no : 0))
+									input#c_electric_no.form-control(name="c_electric_no", type="text", placeHolder="Chỉ số điện tháng này", value= c_electric_no)
 								label.control-label.form-label-cust.col-sm-1(for="electric_unit") Đơn giá:
 								div.col-sm-1
 									input#electric_unit.form-control(name="electric_unit", type="text", placeHolder="Đơn giá " value= electric_unit)
 								label.control-label.form-label-cust.col-sm-2(for="total_electric") Tiền điện:
 								div.col-sm-2
-									input#total_electric.form-control(name="total_electric", type="text", placeHolder="Tiền điện" readonly)
+									input#total_electric.form-control(name="total_electric", type="text", placeHolder="Tiền điện" readonly value=total_electric)
 
 							div.form-group
 								label.control-label.form-label-cust.col-sm-2(for="p_water_no") Chỉ số nước tháng trước (khối):
@@ -79,30 +79,30 @@ block content
 									input#p_water_no.form-control(name="p_water_no", type="text", placeHolder="Chỉ số nước tháng trước", value= (p_water_no ? p_water_no : 0))
 								label.control-label.form-label-cust.col-sm-1(for="c_water_no") Tháng này (khối): 
 								div.col-sm-1
-									input#c_water_no.form-control(name="c_water_no", type="text", placeHolder="Chỉ số nước tháng này (khối)", value= (apartment ? apartment.c_water_no : 0))
+									input#c_water_no.form-control(name="c_water_no", type="text", placeHolder="Chỉ số nước tháng này (khối)", value= c_water_no)
 								label.control-label.form-label-cust.col-sm-1(for="water_unit") Đơn giá:
 								div.col-sm-1
 									input#water_unit.form-control(name="water_unit", type="text", placeHolder="Đơn giá " value = water_unit)
 								label.control-label.form-label-cust.col-sm-2(for="total_water") Tiền nước:
 								div.col-sm-2
-									input#total_water.form-control(name="total_water", type="text", placeHolder="Tiền nước" readonly)
+									input#total_water.form-control(name="total_water", type="text", placeHolder="Tiền nước" readonly, value=total_water)
 
 							div.form-group
 								label.control-label.form-label-cust.col-sm-2(for="status") Tình trạng :						
 								div.col-sm-3
 									label.radio-inline
-										input(name="status", type="radio",  value= "1", checked=gender=="male") 
+										input(name="status", type="radio",  value= "1", checked=(status==1)) 
 										| Đã đóng										
 									label.radio-inline
-										input(name="status", type="radio",  value= "0", checked=gender=="male")
+										input(name="status", type="radio",  value= "0", checked=(status!=1))
 										| Chưa đóng																	
 								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="clean_fee") Tiền vệ sinh
 								div.col-sm-2
 									input#clean_fee.form-control(name="clean_fee", type="text", placeHolder="Tiền vệ sinh", value = clean_fee)
 							div.form-group
-								label.control-label.form-label-cust.col-sm-2(for="time") Thời gian đóng :	
+								label.control-label.form-label-cust.col-sm-2(for="pay_date") Thời gian đóng :	
 								div.col-sm-2.input-group.date
-									input#time.form-control(type="text" name="time")
+									input#pay_date.form-control(type="text" name="pay_date" value=pay_date)
 									span.input-group-addon
 										i.glyphicon.glyphicon-th
 								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="other_fee") Chi phí khác

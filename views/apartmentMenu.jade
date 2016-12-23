@@ -1,0 +1,38 @@
+doctype html
+html
+	block head				
+	body
+		nav.navbar.navbar-fixed-top.navbar-cust
+			div.container-fluid
+				div.navbar-header
+					a.navbar-brand(href="/") Truong Mam Non
+		div#leftmenu.container-fluid.font-face-itim
+			div.row
+				div.col-sm-3.col-md-2.sidebar
+					div#sidenav1.leftsidebar
+						div.navbar-header
+							button.navbar-toggle(data-toggle="collapse", data-target="#sideNavbar")
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+						div#sideNavbar.collapse.navbar-collapse
+							div#accordion.panel-group								
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseSix")
+												span.glyphicon.glyphicon-user
+												| Quản Lý Phòng Trọ
+												span.caret
+									div#collapseSix.panel-collapse.collapse.in
+										ul.list-group
+											li
+												a.navlink(href="/apartmentStatistic") Thống Kê	
+												each apartment, index in apartmentlist
+													if apartment.apartmentId == apartmentId
+														a.navlink.active(href="/apartments/#{year}/#{month}/#{apartment.apartmentId}") #{apartment.name}
+													else
+														a.navlink(href="/apartments/#{year}/#{month}/#{apartment.apartmentId}") #{apartment.name}
+
+												
+				block content

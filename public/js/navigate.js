@@ -1,12 +1,18 @@
  $(function() {
      $("[id^=edit]").click(function() {
-         var id = ($(this).attr("id")).toString();
-         var babyId = id.substring(id.indexOf("_") + 1, id.length);
-         window.location.href = '/babyList/' + babyId;
+         var rawId = ($(this).attr("id")).toString();
+         var firstUnderScoreIndex = rawId.indexOf("_");
+         var secondUnderScoreIndex = rawId.indexOf("_", firstUnderScoreIndex + 1);
+         var id = rawId.substring(firstUnderScoreIndex + 1, secondUnderScoreIndex);
+         var pageName = rawId.substring(secondUnderScoreIndex + 1, rawId.length);         
+         window.location.href = '/' + pageName + '/' + id;
      });
      $('#baby-grid').DataTable({
          paging: true
      });
+     // $('#apartment-grid').DataTable({
+     //     paging: true
+     // });
 
      $('#attendance-grid td.clickable').click(function() {
         

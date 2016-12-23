@@ -109,8 +109,8 @@ app.get('/teacherInfo', authorize, teacher.getRefData);
 app.get('/babyAttendance', baby.getTimeTables);
 
 // Apartment
-app.get('/apartment/:id', apartment.populateData);
-app.post('/apartment/:id', apartment.addOrUpdateApartment);
+app.get('/apartments/:year/:month/:id', apartment.populateData);
+app.post('/apartments/:year/:month/:id', apartment.addOrUpdateApartment);
 app.get('/apartmentStatistic', apartment.getStatistic);
 
 // Create server
