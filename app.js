@@ -8,6 +8,7 @@ var engines = require('consolidate');
 var baby = require('./routes/baby');
 var teacher = require('./routes/teacher');
 var user =  require('./routes/user');
+var appartment = require('./routes/apartment');
 var bodyParser = require('body-parser');
 var validator = require('express-validator');
 var session = require('express-session')
@@ -18,7 +19,8 @@ var  db = mongoskin.db(dbUrl, {safe: true});
 var  collections = {
     babyInfo: db.collection('babyInfo'),
     teachers: db.collection('teacherInfo'),
-    users: db.collection('users')
+    users: db.collection('users'),
+    apartments: db.collection('apartments')
   };
 
 
@@ -105,6 +107,9 @@ app.get('/teacherInfo', authorize, teacher.getRefData);
 
 //
 app.get('/babyAttendance', baby.getTimeTables);
+
+// Apartment
+app.get('/apartment/:id', appartment.populateData);
 
 // Create server
 http.createServer(app).listen(app.get('port'),function(){

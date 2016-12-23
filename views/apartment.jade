@@ -1,0 +1,118 @@
+extends leftMenu
+block head
+	title='Apartment'
+	meta(name="viewport", content="width=device-width, initial-scale=1.0")
+	meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+	link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
+	
+	link(rel='stylesheet', href='/css/camera.css')
+	link(rel='stylesheet', href='/css/style_custom.css')
+	link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')		
+	link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css')
+	link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.bootstrap.min.css')
+	link(rel='stylesheet', href='/css/left-menu.css')
+	link(rel='stylesheet', href='/css/detail.css')
+	link(rel='stylesheet', href='/css/bootstrap-select.min.css')
+	link(rel='stylesheet', href='/css/bootstrap-datepicker.css')
+	
+	
+	script(type='text/javascript', src='https://code.jquery.com/jquery-1.12.4.js')
+	script(type='text/javascript', src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+	script(type='text/javascript', src='/css/bootstrap-3.3.7-dist/js/bootstrap.js')
+	script(type='text/javascript', src='/js/tab.js')
+	script(type='text/javascript', src='/js/bootstrap-select.min.js')
+	script(type='text/javascript', src='/js/bootstrap-datepicker.js')
+	script(type='text/javascript', src='/js/bootstrap-datepicker.vi.min.js')
+	script(type='text/javascript', src='/js/controls.js')
+	script(type='text/javascript', src='//cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js')
+	script(type='text/javascript', src='/js/validate.js')
+	script(type='text/javascript', src='/js/jquery.number.js')
+	script(type='text/javascript', src='/js/apartment-calcuation.js')
+
+	
+		
+block content
+	div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main					
+		#tabs
+			ul
+				li
+					a(href="#tabs-1") Hóa đơn tháng này
+				li
+					a(href="#tabs-2") Lịch sử đóng tiền
+			#tabs-2
+
+			#tabs-1
+				div= error			
+				#fields
+					h3.h3-title Phòng Số #{apartmentId}: Tháng #{month} Năm #{year}
+					form#apartment-form.form-horizontal(method="POST" role="form" novalidate)
+						.row
+								
+							div.form-group
+								label.control-label.form-label-cust.col-sm-2(for="person_no") Số người :
+								div.col-sm-1
+									input#person_no.form-control(name="person_no", type="text", placeHolder="Số người", value= person_no)
+								label.control-label.form-label-cust.col-sm-1(for="person_names") Tên: 
+								div.col-sm-3
+									input#person_names.form-control(name="person_names", type="text", placeHolder="Tên", value= (person_names ? person_names : ""))
+								label.control-label.form-label-cust.col-sm-2(for="room_fee") Tiền phòng:
+								div.col-sm-2
+									input#room_fee.form-control(name="room_fee", type="text", placeHolder="Tiền phòng ", value = room_fee)		
+
+							div.form-group
+								label.control-label.form-label-cust.col-sm-2(for="p_electric_no") Chỉ số điện tháng trước (số):
+								div.col-sm-1
+									input#p_electric_no.form-control(name="p_electric_no", type="text", placeHolder="Chỉ số điện tháng trước", value= (p_electric_no ? p_electric_no : 0))
+								label.control-label.form-label-cust.col-sm-1(for="c_electric_no") Tháng này (số): 
+								div.col-sm-1
+									input#c_electric_no.form-control(name="c_electric_no", type="text", placeHolder="Chỉ số điện tháng này", value= (c_electric_no ? c_electric_no : 0))
+								label.control-label.form-label-cust.col-sm-1(for="electric_unit") Đơn giá:
+								div.col-sm-1
+									input#electric_unit.form-control(name="electric_unit", type="text", placeHolder="Đơn giá " value= electric_unit)
+								label.control-label.form-label-cust.col-sm-2(for="total_electric") Tiền điện:
+								div.col-sm-2
+									input#total_electric.form-control(name="total_electric", type="text", placeHolder="Tiền điện" readonly)
+
+							div.form-group
+								label.control-label.form-label-cust.col-sm-2(for="p_water_no") Chỉ số nước tháng trước (khối):
+								div.col-sm-1
+									input#p_water_no.form-control(name="p_water_no", type="text", placeHolder="Chỉ số nước tháng trước", value= (p_water_no ? p_water_no : 0))
+								label.control-label.form-label-cust.col-sm-1(for="c_water_no") Tháng này (khối): 
+								div.col-sm-1
+									input#c_water_no.form-control(name="c_water_no", type="text", placeHolder="Chỉ số nước tháng này (khối)", value= (apartment ? apartment.c_water_no : 0))
+								label.control-label.form-label-cust.col-sm-1(for="water_unit") Đơn giá:
+								div.col-sm-1
+									input#water_unit.form-control(name="water_unit", type="text", placeHolder="Đơn giá " value = water_unit)
+								label.control-label.form-label-cust.col-sm-2(for="total_water") Tiền nước:
+								div.col-sm-2
+									input#total_water.form-control(name="total_water", type="text", placeHolder="Tiền nước" readonly)
+
+							div.form-group
+								label.control-label.form-label-cust.col-sm-2(for="status") Tình trạng :						
+								div.col-sm-3
+									label.radio-inline
+										input(name="status", type="radio",  value= "1", checked=gender=="male") 
+										| Đã đóng										
+									label.radio-inline
+										input(name="status", type="radio",  value= "0", checked=gender=="male")
+										| Chưa đóng																	
+								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="clean_fee") Tiền vệ sinh
+								div.col-sm-2
+									input#clean_fee.form-control(name="clean_fee", type="text", placeHolder="Tiền vệ sinh", value = clean_fee)
+							div.form-group
+								label.control-label.form-label-cust.col-sm-2(for="time") Thời gian đóng :	
+								div.col-sm-2.input-group.date
+									input#time.form-control(type="text" name="time")
+									span.input-group-addon
+										i.glyphicon.glyphicon-th
+								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="other_fee") Chi phí khác
+								div.col-sm-2
+									input#other_fee.form-control(name="other_fee", type="text", placeHolder="Chi phí khác" value = other_fee)
+							hr.bigHr.col-sm-offset-7.col-sm-4
+							div.form-group													
+								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="total_fee") Tổng	phải đóng
+								div.col-sm-2
+									input#total_fee.form-control(name="total_fee", type="text", placeHolder="Tổng" value = total_fee readonly)
+							
+								
+							button.btn.btn-info.btn-default(type="submit") Lưu lại

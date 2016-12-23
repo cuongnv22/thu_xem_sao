@@ -1,0 +1,135 @@
+doctype html
+html
+	block head				
+	body
+		nav.navbar.navbar-fixed-top.navbar-cust
+			div.container-fluid
+				div.navbar-header
+					a.navbar-brand(href="/") Truong Mam Non
+		div#leftmenu.container-fluid.font-face-itim
+			div.row
+				div.col-sm-3.col-md-2.sidebar
+					div#sidenav1.leftsidebar
+						div.navbar-header
+							button.navbar-toggle(data-toggle="collapse", data-target="#sideNavbar")
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+						div#sideNavbar.collapse.navbar-collapse
+							div#accordion.panel-group
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseOne")
+												span.glyphicon.glyphicon-baby-formula
+												| Quản Lý Học Sinh
+												span.caret
+									div#collapseOne.panel-collapse.collapse.in
+										ul.list-group
+											li
+												a.navlink.active(href="/babyList") Danh Sách Học Sinh
+												a.navlink(href="#") Điểm Danh
+												a.navlink(href="/baby") Tạo Mới Học Sinh
+												
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFour")
+												span.glyphicon.glyphicon-baby-formula
+												| Quản Lý Thu Chi
+												span.caret
+									div#collapseFour.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="#") Quản Lý Thu
+												a.navlink(href="#") Quản Lý Chi												
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseTwo")
+												span.glyphicon.glyphicon-education
+												| Quản Lý Nhân Viên
+												span.caret
+									div#collapseTwo.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/teacherList") Danh sách Nhân Viên
+												a.navlink(href="#") Chấm Công
+												a.navlink(href="/teacherInfo") Tạo Mới Nhân Viên
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseThree")
+												span.glyphicon.glyphicon-user
+												| Quản Lý Tài khoản
+												span.caret
+									div#collapseThree.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/teacherList") Danh Sách Người Dùng
+												a.navlink(href="/teacher") Tạo Mới Người Dùng
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFive")
+												span.glyphicon.glyphicon-user
+												| Quản Lý Chỉ Mục
+												span.caret
+									div#collapseFive.panel-collapse.collapse
+										ul.list-group
+											li
+												a.navlink(href="/teacherList") Danh sách Chỉ Mục
+												a.navlink(href="/teacher") Tạo Mới Chỉ Mục
+								div.panel.panel-default
+									div.panel-heading
+										h4.panel-title
+											a(data-toggle="collapse", data-parent="#accordion" href="#collapseSix")
+												span.glyphicon.glyphicon-user
+												| Quản Lý Phòng Trọ
+												span.caret
+									div#collapseSix.panel-collapse.collapse.in
+										ul.list-group
+											li
+												if apartmentId == 1
+													a.navlink.active(href="/apartment/1") Phòng 1
+												else
+													a.navlink(href="/apartment/1") Phòng 1
+												if apartmentId == 2
+													a.navlink.active(href="/apartment/2") Phòng 2
+												else
+													a.navlink(href="/apartment/2") Phòng 2
+												if apartmentId == 3
+													a.navlink.active(href="/apartment/3") Phòng 3
+												else
+													a.navlink(href="/apartment/3") Phòng 3
+												a.navlink(href="/apartment/4") Phòng 4
+												a.navlink(href="/apartment/5") Phòng 5
+												a.navlink(href="/apartment/6") Phòng 6
+												a.navlink(href="/apartment/7") Phòng 7
+												a.navlink(href="/apartment/8") Phòng 8
+												a.navlink(href="/apartment/9") Phòng 9
+												a.navlink(href="/apartment/10") Phòng 10
+												a.navlink(href="/apartment/11") Phòng 11
+												a.navlink(href="/apartment/12") Phòng 12
+												a.navlink(href="/apartment/13") Phòng 13
+												a.navlink(href="/apartment/14") Phòng 14
+												a.navlink(href="/apartment/15") Phòng 15
+												a.navlink(href="/apartment/16") Phòng 16
+												a.navlink(href="/apartment/17") Phòng 17
+												a.navlink(href="/apartment/18") Phòng 18
+												a.navlink(href="/apartment/19") Phòng 19
+												a.navlink(href="/apartment/20") Phòng 20
+												a.navlink(href="/apartment/21") Phòng 21
+												a.navlink(href="/apartment/22") Phòng 22
+												a.navlink(href="/apartment/23") Phòng 23
+												a.navlink(href="/apartment/24") Phòng 24
+												a.navlink(href="/apartment/25") Phòng 25
+												a.navlink(href="/apartment/26") Phòng 26
+												a.navlink(href="/apartment/27") Phòng 27
+												a.navlink(href="/apartment/28") Phòng 28
+												a.navlink(href="/apartment/29") Phòng 29
+												a.navlink(href="/apartment/30") Phòng 30
+												a.navlink(href="/apartment/31") Phòng 31
+												a.navlink(href="/apartment/32") Phòng 32
+												a.navlink(href="/apartment/33") Phòng 33
+				block content

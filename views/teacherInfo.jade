@@ -1,268 +1,175 @@
-doctype html
-html
-	head
-		title='Teacher'
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="content-type", content="text/html; charset=UTF-8")
-		link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
+extends leftMenu
+block head
+	title='Teacher'
+	meta(name="viewport", content="width=device-width, initial-scale=1.0")
+	meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+	link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
+	
+	link(rel='stylesheet', href='/css/camera.css')
+	link(rel='stylesheet', href='/css/style_custom.css')
+	link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')		
+	link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css')
+	link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.bootstrap.min.css')
+	link(rel='stylesheet', href='/css/left-menu.css')
+	link(rel='stylesheet', href='/css/detail.css')
+	link(rel='stylesheet', href='/css/bootstrap-select.min.css')
+	link(rel='stylesheet', href='/css/bootstrap-datepicker.css')
+	
+	
+	script(type='text/javascript', src='https://code.jquery.com/jquery-1.12.4.js')
+	script(type='text/javascript', src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+	script(type='text/javascript', src='/css/bootstrap-3.3.7-dist/js/bootstrap.js')
+	script(type='text/javascript', src='/js/tab.js')
+	script(type='text/javascript', src='/js/bootstrap-select.min.js')
+	script(type='text/javascript', src='/js/bootstrap-datepicker.js')
+	script(type='text/javascript', src='/js/bootstrap-datepicker.vi.min.js')
+	script(type='text/javascript', src='/js/controls.js')
+	script(type='text/javascript', src='//cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js')
+	script(type='text/javascript', src='/js/validate.js')
+
+block content
+	div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main					
+		#tabs
+			ul
+				li
+					a(href="#tabs-1") Thông tin cơ bản
+				li
+					a(href="#tabs-2") Thông tin mở rộng
+			#tabs-1
+				div= error			
+				#fields
+					form#baby-form.form-horizontal(action="baby" method="POST" role="form" novalidate)
+						.row							
+							div.form-group
+								label.control-label.form-label-cust.col-sm-1(for="name") Họ tên :
+								div.col-sm-2
+									input#name.form-control(name="name", type="text", placeHolder="Họ tên", value= name, required, data-required-msg='Tên không để trống'  data-available data-available-url="validate/username" data-available-msg="The username #: data # is not available")
+
+								label.control-label.form-label-cust.col-sm-2(for="gender-input") Giới tính :	
+								div.col-sm-2
+									label.radio-inline
+										input(name="gender", type="radio",  value= "1", checked=gender=="male") 
+										| Nam
+									label.radio-inline
+										input(name="gender", type="radio",  value= "0", checked=gender=="male")
+										| Nữ						
+								
+								label.control-label.form-label-cust.col-sm-2(for="DOB") Ngày sinh:
+								div.col-sm-2.input-group.date
+									input#dob.form-control(type="text" name="dob" value= dob)
+									span.input-group-addon
+										i.glyphicon.glyphicon-th
 		
-		link(rel='stylesheet', href='/css/camera.css')
-		link(rel='stylesheet', href='/css/style_custom.css')
-		link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')		
-		link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css')
-		link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.bootstrap.min.css')
-		link(rel='stylesheet', href='/css/left-menu.css')
-		link(rel='stylesheet', href='/css/detail.css')
-		link(rel='stylesheet', href='/css/bootstrap-select.min.css')
-		link(rel='stylesheet', href='/css/bootstrap-datepicker.css')
-		
-		
-		script(type='text/javascript', src='https://code.jquery.com/jquery-1.12.4.js')
-		script(type='text/javascript', src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
-		script(type='text/javascript', src='/css/bootstrap-3.3.7-dist/js/bootstrap.js')
-		script(type='text/javascript', src='/js/tab.js')
-		script(type='text/javascript', src='/js/bootstrap-select.min.js')
-		script(type='text/javascript', src='/js/bootstrap-datepicker.js')
-		script(type='text/javascript', src='/js/bootstrap-datepicker.vi.min.js')
-		script(type='text/javascript', src='/js/controls.js')
-		script(type='text/javascript', src='//cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js')
-		script(type='text/javascript', src='/js/validate.js')
-		
-	body	 
-		nav.navbar.navbar-fixed-top.navbar-cust
-			div.container-fluid
-				div.navbar-header
-					a.navbar-brand(href="/") Truong Mam Non
-		div#leftmenu.container-fluid.font-face-itim
-			div.row
-				div.col-sm-3.col-md-2.sidebar
-					div#sidenav1.leftsidebar
-						div.navbar-header
-							button.navbar-toggle(data-toggle="collapse", data-target="#sideNavbar")
-								span.icon-bar
-								span.icon-bar
-								span.icon-bar
-						div#sideNavbar.collapse.navbar-collapse
-							div#accordion.panel-group
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseOne")
-												span.glyphicon.glyphicon-baby-formula
-												| Quản Lý Học Sinh
-												span.caret
-									div#collapseOne.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="/babyList") Danh Sách Học Sinh
-												a.navlink(href="#") Điểm Danh
-												a.navlink(href="/baby") Tạo Mới Học Sinh
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFour")
-												span.glyphicon.glyphicon-baby-formula
-												| Quản Lý Thu Chi
-												span.caret
-									div#collapseFour.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="#") Quản Lý Thu
-												a.navlink(href="#") Quản Lý Chi												
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseTwo")
-												span.glyphicon.glyphicon-education
-												| Quản Lý Nhân Viên
-												span.caret
-									div#collapseTwo.panel-collapse.collapse.in
-										ul.list-group
-											li
-												a.navlink(href="/teacherList") Danh sách Nhân Viên
-												a.navlink(href="#") Chấm Công
-												if teacher
-													a.navlink(href="/teacher") Tạo Mới Nhân Viên
-												else
-													a.navlink.active(href="/teacherInfo") Tạo Mới Nhân Viên	
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseThree")
-												span.glyphicon.glyphicon-user
-												| Quản Lý Tài khoản
-												span.caret
-									div#collapseThree.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="/teacherList") Danh Sách Người Dùng
-												a.navlink(href="/teacher") Tạo Mới Người Dùng
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFive")
-												span.glyphicon.glyphicon-pencil
-												| Quản Lý Chỉ Mục
-												span.caret
-									div#collapseFive.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="/teacherList") Danh sách Chỉ Mục
-												a.navlink(href="/teacher") Tạo Mới Chỉ Mục
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseSix")
-												span.glyphicon.glyphicon-stats
-												| Báo Cáo Thống Kê
-												span.caret
-									div#collapseSix.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="/teacherList") AAA
-												a.navlink(href="/teacher") BBB
-				div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main					
-					#tabs
-						ul
-							li
-								a(href="#tabs-1") Thông tin cơ bản
-							li
-								a(href="#tabs-2") Thông tin mở rộng
-						#tabs-1
-							div= error			
-							#fields
-								form#baby-form.form-horizontal(action="baby" method="POST" role="form" novalidate)
-									.row							
-										div.form-group
-											label.control-label.form-label-cust.col-sm-1(for="name") Họ tên :
-											div.col-sm-2
-												input#name.form-control(name="name", type="text", placeHolder="Họ tên", value= name, required, data-required-msg='Tên không để trống'  data-available data-available-url="validate/username" data-available-msg="The username #: data # is not available")
+							div.form-group			
+								label.control-label.form-label-cust.col-sm-1(for="jobtitle") Chức vụ :
+								div.col-sm-2
+									select#jobtitle.selectpicker.form-control(name="jobtitle")
+										for item in jobtitles
+											option(value="#{item['id']}") #{item["name"]}
+								label.control-label.form-label-cust.col-sm-2(for="level") Trình độ :
+								div.col-sm-2
+									select#level.selectpicker.form-control(name="level")
+										for item in levels
+											option(value="#{item['id']}") #{item["name"]}	
 
-											label.control-label.form-label-cust.col-sm-2(for="gender-input") Giới tính :	
-											div.col-sm-2
-												label.radio-inline
-													input(name="gender", type="radio",  value= "1", checked=gender=="male") 
-													| Nam
-												label.radio-inline
-													input(name="gender", type="radio",  value= "0", checked=gender=="male")
-													| Nữ						
-											
-											label.control-label.form-label-cust.col-sm-2(for="DOB") Ngày sinh:
-											div.col-sm-2.input-group.date
-												input#dob.form-control(type="text" name="dob" value= dob)
-												span.input-group-addon
-													i.glyphicon.glyphicon-th
-					
-										div.form-group			
-											label.control-label.form-label-cust.col-sm-1(for="jobtitle") Chức vụ :
-											div.col-sm-2
-												select#jobtitle.selectpicker.form-control(name="jobtitle")
-													for item in jobtitles
-														option(value="#{item['id']}") #{item["name"]}
-											label.control-label.form-label-cust.col-sm-2(for="level") Trình độ :
-											div.col-sm-2
-												select#level.selectpicker.form-control(name="level")
-													for item in levels
-														option(value="#{item['id']}") #{item["name"]}	
+								label.control-label.form-label-cust.col-sm-2(for="cmnd") CMND :
+								div.col-sm-2
+									input#cmnd.form-control(name="cmnd", type="text", placeHolder="CMND", value= cmnd)
 
-											label.control-label.form-label-cust.col-sm-2(for="cmnd") CMND :
-											div.col-sm-2
-												input#cmnd.form-control(name="cmnd", type="text", placeHolder="CMND", value= cmnd)
+							div.form-group			
+								label.control-label.form-label-cust.col-sm-1(for="dantoc") Dân tộc :
+								div.col-sm-2
+									input#dantoc.form-control(name="dantoc", type="text", placeHolder="Dân tộc", value= dantoc)
 
-										div.form-group			
-											label.control-label.form-label-cust.col-sm-1(for="dantoc") Dân tộc :
-											div.col-sm-2
-												input#dantoc.form-control(name="dantoc", type="text", placeHolder="Dân tộc", value= dantoc)
-
-											label.control-label.form-label-cust.col-sm-2(for="religion") Tôn giáo :
-											div.col-sm-2
-												input#religion.form-control(name="religion", type="text", placeHolder="Tôn giáo", value= religion)
-																						
-											label.control-label.form-label-cust.col-sm-2(for="issue_date") Ngày cấp :
-											div.col-sm-2.input-group.date
-												input#issue_date.form-control(type="text" name="issue_date" value= issue_date)
-												span.input-group-addon
-													i.glyphicon.glyphicon-th
-											
-										div.form-group
-											label.control-label.form-label-cust.col-sm-1(for="issue_place") Nơi cấp :
-											div.col-sm-2
-												input#issue_place.form-control(name="issue_place", type="text", placeHolder="Nơi cấp", value= issue_place)
-										
-											label.control-label.form-label-cust.col-sm-2(for="address") Địa chỉ :
-											div.col-sm-7
-												input#address.form-control.input-lg(name="address", type="text", placeHolder="Địa chỉ", value= address)
-										
-										div.form-group
-											label.control-label.form-label-cust.col-sm-1(for="address") Email :
-											div.col-sm-2
-												input#address.form-control(name="address", type="text", placeHolder="Địa chỉ", value= address)
-
-											label.control-label.form-label-cust.col-sm-2(for="phone") Điện thoại :
-											div.col-sm-2
-												input#phone.form-control(name="phone", type="text", placeHolder="Nơi cấp", value= phone)
-																				
-										div.form-group
-											label.form-label-cust.control-label.col-sm-1(for="note_1") Ghi chú :
-											div.col-sm-11
-												textarea#note_1.form-control(name="note_1", placeHolder="Ghi chú", value= note_1, rows="3")							
-										hr.bigHr
-																		
-										div.form-group
-											label.control-label.col-sm-2.form-label-cust(for="faname") Họ tên bố:
-											div.col-sm-3
-												input#faname.form-control(name="faname", type="text", placeHolder="Họ tên bố", value= fatherName)
-
-											label.control-label.col-sm-2.form-label-cust(for="fbirthday") Năm sinh của bố:
-											div.col-sm-2
-												input#fbirthday.form-control(name="fbirthday", type="text", placeHolder="Năm sinh", value= fbirthday)
-
-										div.form-group
-											label.control-label.col-sm-2.form-label-cust(for="fjob") Nghề nghiệp của bố:
-											div.col-sm-3
-												input#fjob.form-control(name="fjob", type="text", placeHolder="Nghề nghiệp", value= fjob)
-											
-											label.control-label.col-sm-2.form-label-cust(for="fphone") Số điện thoại của bố:
-											div.col-sm-2
-												input#fphone.form-control(type="text" name="phone" placeHolder="Số điện thoại" value= fphone)
-										div.form-group
-											label.control-label.col-sm-2.form-label-cust(for="faname") Họ tên mẹ:
-											div.col-sm-3
-												input#faname.form-control(name="mname", type="text", placeHolder="Họ tên mẹ", value= mothername)
-
-											label.control-label.col-sm-2.form-label-cust(for="mbirthday") Năm sinh của mẹ:
-											div.col-sm-2
-												input#mbirthday.form-control(name="mbirthday", type="text", placeHolder="Năm sinh", value= mbirthday)
-
-										div.form-group
-											label.control-label.col-sm-2.form-label-cust(for="mjob") Nghề nghiệp của mẹ:
-											div.col-sm-3
-												input#mjob.form-control(name="mjob", type="text", placeHolder="Nghề nghiệp", value= mjob)
-											
-											label.control-label.col-sm-2.form-label-cust(for="mphone") Số điện thoại của mẹ:
-											div.col-sm-2
-												input#mphone.form-control(type="text" name="mphone" placeHolder="Số điện thoại" value= mphone)
-										
-										div.form-group
-											label.control-label.col-sm-2.form-label-cust(for="faname") Họ tên Vợ / Chồng:
-											div.col-sm-3
-												input#faname.form-control(name="mname", type="text", placeHolder="Họ tên mẹ", value= mothername)
-
-											label.control-label.col-sm-2.form-label-cust(for="mbirthday") Năm sinh Vợ / Chồng:
-											div.col-sm-2
-												input#mbirthday.form-control(name="mbirthday", type="text", placeHolder="Năm sinh", value= mbirthday)
-
-										div.form-group
-											label.control-label.col-sm-2.form-label-cust(for="mjob") Nghề nghiệp của Vợ / Chồng:
-											div.col-sm-3
-												input#mjob.form-control(name="mjob", type="text", placeHolder="Nghề nghiệp", value= mjob)
-											
-											label.control-label.col-sm-2.form-label-cust(for="mphone") Số điện thoại của Vợ / Chồng:
-											div.col-sm-2
-												input#mphone.form-control(type="text" name="mphone" placeHolder="Số điện thoại" value= mphone)					
-										
+								label.control-label.form-label-cust.col-sm-2(for="religion") Tôn giáo :
+								div.col-sm-2
+									input#religion.form-control(name="religion", type="text", placeHolder="Tôn giáo", value= religion)
 																			
-									button.btn-info.btn-lg(type="submit") Lưu lại
-									include messages 				
+								label.control-label.form-label-cust.col-sm-2(for="issue_date") Ngày cấp :
+								div.col-sm-2.input-group.date
+									input#issue_date.form-control(type="text" name="issue_date" value= issue_date)
+									span.input-group-addon
+										i.glyphicon.glyphicon-th
+								
+							div.form-group
+								label.control-label.form-label-cust.col-sm-1(for="issue_place") Nơi cấp :
+								div.col-sm-2
+									input#issue_place.form-control(name="issue_place", type="text", placeHolder="Nơi cấp", value= issue_place)
+							
+								label.control-label.form-label-cust.col-sm-2(for="address") Địa chỉ :
+								div.col-sm-7
+									input#address.form-control.input-lg(name="address", type="text", placeHolder="Địa chỉ", value= address)
+							
+							div.form-group
+								label.control-label.form-label-cust.col-sm-1(for="address") Email :
+								div.col-sm-2
+									input#address.form-control(name="address", type="text", placeHolder="Địa chỉ", value= address)
+
+								label.control-label.form-label-cust.col-sm-2(for="phone") Điện thoại :
+								div.col-sm-2
+									input#phone.form-control(name="phone", type="text", placeHolder="Nơi cấp", value= phone)
+																	
+							div.form-group
+								label.form-label-cust.control-label.col-sm-1(for="note_1") Ghi chú :
+								div.col-sm-11
+									textarea#note_1.form-control(name="note_1", placeHolder="Ghi chú", value= note_1, rows="3")							
+							hr.bigHr
+															
+							div.form-group
+								label.control-label.col-sm-2.form-label-cust(for="faname") Họ tên bố:
+								div.col-sm-3
+									input#faname.form-control(name="faname", type="text", placeHolder="Họ tên bố", value= fatherName)
+
+								label.control-label.col-sm-2.form-label-cust(for="fbirthday") Năm sinh của bố:
+								div.col-sm-2
+									input#fbirthday.form-control(name="fbirthday", type="text", placeHolder="Năm sinh", value= fbirthday)
+
+							div.form-group
+								label.control-label.col-sm-2.form-label-cust(for="fjob") Nghề nghiệp của bố:
+								div.col-sm-3
+									input#fjob.form-control(name="fjob", type="text", placeHolder="Nghề nghiệp", value= fjob)
+								
+								label.control-label.col-sm-2.form-label-cust(for="fphone") Số điện thoại của bố:
+								div.col-sm-2
+									input#fphone.form-control(type="text" name="phone" placeHolder="Số điện thoại" value= fphone)
+							div.form-group
+								label.control-label.col-sm-2.form-label-cust(for="faname") Họ tên mẹ:
+								div.col-sm-3
+									input#faname.form-control(name="mname", type="text", placeHolder="Họ tên mẹ", value= mothername)
+
+								label.control-label.col-sm-2.form-label-cust(for="mbirthday") Năm sinh của mẹ:
+								div.col-sm-2
+									input#mbirthday.form-control(name="mbirthday", type="text", placeHolder="Năm sinh", value= mbirthday)
+
+							div.form-group
+								label.control-label.col-sm-2.form-label-cust(for="mjob") Nghề nghiệp của mẹ:
+								div.col-sm-3
+									input#mjob.form-control(name="mjob", type="text", placeHolder="Nghề nghiệp", value= mjob)
+								
+								label.control-label.col-sm-2.form-label-cust(for="mphone") Số điện thoại của mẹ:
+								div.col-sm-2
+									input#mphone.form-control(type="text" name="mphone" placeHolder="Số điện thoại" value= mphone)
+							
+							div.form-group
+								label.control-label.col-sm-2.form-label-cust(for="faname") Họ tên Vợ / Chồng:
+								div.col-sm-3
+									input#faname.form-control(name="mname", type="text", placeHolder="Họ tên mẹ", value= mothername)
+
+								label.control-label.col-sm-2.form-label-cust(for="mbirthday") Năm sinh Vợ / Chồng:
+								div.col-sm-2
+									input#mbirthday.form-control(name="mbirthday", type="text", placeHolder="Năm sinh", value= mbirthday)
+
+							div.form-group
+								label.control-label.col-sm-2.form-label-cust(for="mjob") Nghề nghiệp của Vợ / Chồng:
+								div.col-sm-3
+									input#mjob.form-control(name="mjob", type="text", placeHolder="Nghề nghiệp", value= mjob)
+								
+								label.control-label.col-sm-2.form-label-cust(for="mphone") Số điện thoại của Vợ / Chồng:
+								div.col-sm-2
+									input#mphone.form-control(type="text" name="mphone" placeHolder="Số điện thoại" value= mphone)					
+							
+																
+						button.btn-info.btn-lg(type="submit") Lưu lại
+						include messages 				
 							
 			

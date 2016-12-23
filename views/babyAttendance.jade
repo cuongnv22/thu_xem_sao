@@ -1,141 +1,41 @@
-doctype html
-html
-	head
-		title='Attendance'
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="content-type", content="text/html; charset=UTF-8")
-		link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
-		link(rel='stylesheet', href='/css/jquery.dataTables.min.css')
-		link(rel='stylesheet', href='/css/left-menu.css')
-		link(rel='stylesheet', href='/css/style_custom.css')
-		link(rel='stylesheet', href='/css/detail.css')
-		link(rel='stylesheet', href='/css/bootstrap-select.min.css')
-				
-		script(type='text/javascript', src='/js/jquery.min.js')		
-		script(type='text/javascript', src='/css/bootstrap-3.3.7-dist/js/bootstrap.js')
-		script(type='text/javascript', src='/js/bootstrap-select.min.js')
-		script(type='text/javascript', src='/js/jquery.dataTables.js')
-		script(type='text/javascript', src='/js/navigate.js')
+extends leftMenu
+block head
+	title='Attendance'
+	meta(name="viewport", content="width=device-width, initial-scale=1.0")
+	meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+	link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
+	link(rel='stylesheet', href='/css/jquery.dataTables.min.css')
+	link(rel='stylesheet', href='/css/left-menu.css')
+	link(rel='stylesheet', href='/css/style_custom.css')
+	link(rel='stylesheet', href='/css/detail.css')
+	link(rel='stylesheet', href='/css/bootstrap-select.min.css')
+			
+	script(type='text/javascript', src='/js/jquery.min.js')		
+	script(type='text/javascript', src='/css/bootstrap-3.3.7-dist/js/bootstrap.js')
+	script(type='text/javascript', src='/js/bootstrap-select.min.js')
+	script(type='text/javascript', src='/js/jquery.dataTables.js')
+	script(type='text/javascript', src='/js/navigate.js')
 		
-	body
-		nav.navbar.navbar-fixed-top.navbar-cust
-			div.container-fluid
-				div.navbar-header
-					a.navbar-brand(href="/") Truong Mam Non
-		div#leftmenu.container-fluid.font-face-itim
-			div#myModal.modal.fade(role="dialog")
-				div.modal-dialog.modal-dialog-cust
-					div.modal-content
-						div.modal-header
-							button.close(type="button" data-dismiss="modal")&times;
-							h4.modal-title Điểm danh.
-						div.modal-body
-							form.form-horizontal
-								div.form-group
-									label.control-label.form-label-cust.col-sm-2(for="absenceId") Nghỉ :
-									div.col-sm-2							
-										select#absenceId.selectpicker(name="absenceId")
-											for item in absences
-												option(value="#{item['id']}") #{item["name"]}
-								div.form-group
-									label.control-label.form-label-cust.col-sm-2(for="reason") Lý do nghỉ:
-									div.col-sm-3
-										input#reason.form-control(name="reason", type="text", placeHolder="Lý do nghỉ")
-								div.form
-								button.btn.btn-info.btn-default(type="submit") Lưu lại		
-						div.modal-footer
-							button.btn.btn-default(type="button", data-dismiss="modal") Close
-			div.row
-				div.col-sm-3.col-md-2.sidebar
-					div#sidenav1.leftsidebar
-						div.navbar-header
-							button.navbar-toggle(data-toggle="collapse", data-target="#sideNavbar")
-								span.icon-bar
-								span.icon-bar
-								span.icon-bar
-						div#sideNavbar.collapse.navbar-collapse
-							div#accordion.panel-group
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseOne")
-												span.glyphicon.glyphicon-baby-formula
-												| Quản Lý Học Sinh
-												span.caret
-									div#collapseOne.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="/babyList") Danh Sách Học Sinh
-												a.navlink(href="#") Điểm Danh
-												a.navlink(href="/baby") Tạo Mới Học Sinh
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFour")
-												span.glyphicon.glyphicon-baby-formula
-												| Quản Lý Thu Chi
-												span.caret
-									div#collapseFour.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="#") Quản Lý Thu
-												a.navlink(href="#") Quản Lý Chi												
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseTwo")
-												span.glyphicon.glyphicon-education
-												| Quản Lý Nhân Viên
-												span.caret
-									div#collapseTwo.panel-collapse.collapse.in
-										ul.list-group
-											li
-												a.navlink.active(href="/teacherList") Danh sách Nhân Viên
-												a.navlink(href="#") Chấm Công
-												a.navlink(href="/teacher") Tạo Mới Nhân Viên
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseThree")
-												span.glyphicon.glyphicon-user
-												| Quản Lý Tài khoản
-												span.caret
-									div#collapseThree.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="/teacherList") Danh Sách Người Dùng
-												a.navlink(href="/teacher") Tạo Mới Người Dùng
-								div.panel.panel-default
-									div.panel-heading
-										h4.panel-title
-											a(data-toggle="collapse", data-parent="#accordion" href="#collapseFive")
-												span.glyphicon.glyphicon-user
-												| Quản Lý Chỉ Mục
-												span.caret
-									div#collapseFive.panel-collapse.collapse
-										ul.list-group
-											li
-												a.navlink(href="/teacherList") Danh sách Chỉ Mục
-												a.navlink(href="/teacher") Tạo Mới Chỉ Mục
-				div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-					if(babies == null || babies.length == 0)
-						p
-							| Chưa có dữ liệu. Tạo thông tin về 
-							a(href="/teacherInfo") Giáo viên
-							|.
-					else
-						table#attendance-grid.table.table-hover.table-bordered
-							thead		
-								tr
-									th Name
-									each item in timeTables
-										th= item.name
-							tbody
-								each baby, index in babies
-									tr(data-id="#{baby._id}")
-										td= baby.name
-										each item in timeTables
-											td(data-id="#{baby._id}_#{item.id}", data-toggle="tooltip_#{baby._id}_#{item.id}").clickable											
+block content
+	div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+		if(babies == null || babies.length == 0)
+			p
+				| Chưa có dữ liệu. Tạo thông tin về 
+				a(href="/teacherInfo") Giáo viên
+				|.
+		else
+			table#attendance-grid.table.table-hover.table-bordered
+				thead		
+					tr
+						th Name
+						each item in timeTables
+							th= item.name
+				tbody
+					each baby, index in babies
+						tr(data-id="#{baby._id}")
+							td= baby.name
+							each item in timeTables
+								td(data-id="#{baby._id}_#{item.id}", data-toggle="tooltip_#{baby._id}_#{item.id}").clickable											
 												
 
 										
