@@ -25,6 +25,8 @@ block head
 	script(type='text/javascript', src='/js/bootstrap-datepicker.vi.min.js')
 	script(type='text/javascript', src='/js/controls.js')
 	script(type='text/javascript', src='//cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js')
+	script(type='text/javascript', src='/js/apartment-calculation.js')
+	
 	script(type='text/javascript', src='/js/validate.js')
 	script(type='text/javascript', src='/js/jquery.number.js')
 	script(type='text/javascript', src='/js/apartment-calcuation.js')
@@ -36,7 +38,7 @@ block content
 		#tabs
 			ul
 				li
-					a(href="#tabs-1") Hóa đơn tháng này
+					a(href="#tabs-1") Hóa đơn tháng #{month}
 				li
 					a(href="#tabs-2") Lịch sử đóng tiền
 			#tabs-2

@@ -27,12 +27,15 @@ html
 									div#collapseSix.panel-collapse.collapse.in
 										ul.list-group
 											li
-												a.navlink(href="/apartmentStatistic") Thống Kê	
+												if (isSatistical)
+													a.navlink.active(href="/apartmentStatistic") Thống Kê
+												else
+													a.navlink(href="/apartmentStatistic") Thống Kê
 												each apartment, index in apartmentlist
 													if apartment.apartmentId == apartmentId
-														a.navlink.active(href="/apartments/#{year}/#{month}/#{apartment.apartmentId}") #{apartment.name}
+														a.navlink.active(href="/apartments/#{c_year}/#{c_month}/#{apartment.apartmentId}") #{apartment.name}
 													else
-														a.navlink(href="/apartments/#{year}/#{month}/#{apartment.apartmentId}") #{apartment.name}
+														a.navlink(href="/apartments/#{c_year}/#{c_month}/#{apartment.apartmentId}") #{apartment.name}
 
 												
 				block content

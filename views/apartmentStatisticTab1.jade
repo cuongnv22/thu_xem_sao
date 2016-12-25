@@ -1,48 +1,4 @@
-extends apartmentMenu
-block head
-	title='Danh sách đóng tiền'
-	meta(name="viewport", content="width=device-width, initial-scale=1.0")
-	meta(http-equiv="content-type", content="text/html; charset=UTF-8")
-	link(rel='stylesheet', href='/css/bootstrap-3.3.7-dist/css/bootstrap.css')
-	
-	link(rel='stylesheet', href='/css/camera.css')
-	link(rel='stylesheet', href='/css/style_custom.css')
-	link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')		
-	link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css')
-	link(rel='stylesheet', href='//cdn.kendostatic.com/2013.3.1119/styles/kendo.bootstrap.min.css')
-	link(rel='stylesheet', href='/css/left-menu.css')
-	link(rel='stylesheet', href='/css/detail.css')
-	link(rel='stylesheet', href='/css/bootstrap-select.min.css')
-	link(rel='stylesheet', href='/css/bootstrap-datepicker.css')
-	
-	
-	script(type='text/javascript', src='https://code.jquery.com/jquery-1.12.4.js')
-	script(type='text/javascript', src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
-	script(type='text/javascript', src='/css/bootstrap-3.3.7-dist/js/bootstrap.js')
-	script(type='text/javascript', src='/js/tab.js')
-	script(type='text/javascript', src='/js/bootstrap-select.min.js')
-	script(type='text/javascript', src='/js/bootstrap-datepicker.js')
-	script(type='text/javascript', src='/js/bootstrap-datepicker.vi.min.js')
-	script(type='text/javascript', src='/js/controls.js')
-	script(type='text/javascript', src='//cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js')
-	script(type='text/javascript', src='/js/navigate.js')
-	script(type='text/javascript', src='/js/validate.js')
-	script(type='text/javascript', src='/js/jquery.number.js')
-	script(type='text/javascript', src='/js/apartment-calcuation.js')
-
-
-block content
-	div.col-sm-10.col-sm-offset-3.col-md-10.col-md-offset-2.main
-		#tabs
-				ul
-					li
-						a(href="#tabs-1") Thống kê đóng tiền
-					li
-						a(href="#tabs-2") Quản lý thu chi
-				div#tabs-2
-
-				div#tabs-1
-					if(apartments == null || apartments.length == 0)
+if(apartments == null || apartments.length == 0)
 						p
 							| Chưa có dữ liệu phòng trọ tháng này. 				
 					else
@@ -172,4 +128,4 @@ block content
 											td.clickable= apartment.pay_date
 											td.action
 												button.btn.btn-default(id="edit_#{apartment.year}_#{apartment.month}_#{apartment.apartmentId}_apartments", type="button")
-														span.glyphicon.glyphicon-pencil Sửa							
+														span.glyphicon.glyphicon-pencil Sửa

@@ -156,11 +156,11 @@ exports.populateData = function(request, response, next) {
 	var pay_date = "";
 
 	var apartmentId = request.params.id;	
-	var year1 = request.params.year;
-	var month1 = request.params.month;
+	var year = convert2Int(request.params.year);
+	var month = convert2Int(request.params.month);
 	var currentDate = new Date();
-	var month = currentDate.getMonth() + 1;
-	var year =  currentDate.getFullYear();
+	var c_month = currentDate.getMonth() + 1;
+	var c_year =  currentDate.getFullYear();
 	var yearOfPreviousMonth = year;
 	var previousMonth = month - 1;
 	if (month == 1)	{
@@ -230,7 +230,9 @@ exports.populateData = function(request, response, next) {
 											other_fee: other_fee,
 											total_fee: total_fee,
 											status: status,
-											pay_date: pay_date
+											pay_date: pay_date,
+											c_year: c_year,
+											c_month: c_month
 										});
 		});
 	});		
@@ -332,7 +334,9 @@ exports.addOrUpdateApartment = function(request, response, next) {
 											other_fee: other_fee,
 											total_fee: total_fee,
 											status: status,
-											pay_date: pay_date
+											pay_date: pay_date,
+											c_year: year,
+											c_month: month
 									});
 				});							
 			}							
@@ -363,7 +367,9 @@ exports.addOrUpdateApartment = function(request, response, next) {
 											other_fee: other_fee,
 											total_fee: total_fee,
 											status: status,
-											pay_date: pay_date
+											pay_date: pay_date,
+											c_year: year,
+											c_month: month
 										});
 					}
 				});
@@ -378,15 +384,25 @@ exports.getStatistic = function(request, response, next) {
 	var currentDate = new Date();
 	var month = currentDate.getMonth() + 1;
 	var year =  currentDate.getFullYear();
+
+	var yearOfPreviousMonth = year;
+	var previousMonth = month - 1;
+	if (month == 1)	{
+		previousMonth = 12;
+		yearOfPreviousMonth = year - 1;
+	}
 	
-	request.collections.apartments.find({year: year, month: 11}).sort({status: 1}).toArray(function(error, old_apartments){
+	request.collections.apartments.find({year: yearOfPreviousMonth, month: previousMonth}).sort({status: 1}).toArray(function(error, old_apartments){
 		request.collections.apartments.find({year: year, month: month}).sort({status: 1}).toArray(function(error, apartments){
 			response.render('apartmentStatistic', {
 								apartmentlist: apartmentlist,
+								isSatistical: true,
 								apartments : apartments, 
-								ld_apartments : old_apartments,
+								old_apartments : old_apartments,
 								year: year,
-								month: month
+								month: month,
+								c_year: year,
+								c_month: month
 							});
 		});
 	});

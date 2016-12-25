@@ -1,0 +1,49 @@
+form#apartment-tab2-search.form-horizontal(role="form" novalidate)
+	.row								
+		div.form-group
+			label.control-label.form-label-cust.col-sm-2(for="choosen_date") Chọn tháng :
+			div.col-sm-2
+				input#choosen_date.date-picker.form-control(name="choosenDate")
+			div.col-sm-2
+				button#showStatistic.btn.btn-default(type="submit") Hiển thị
+hr.bigHr
+h3.h3-title Thông tin thu chi tháng 12
+form#apartment-tab2-content.form-horizontal.hiddenForm(method="POST" role="form" novalidate)
+	.row
+		h3 Thu	
+		div.form-group
+			label.control-label.col-sm-2(for="total_take") Tổng thu phòng trọ
+			div.col-sm-2
+				input#total_take.form-control(name="total_take", type="text", value= total_take)
+		h3 Chi
+		div.form-group
+			label.control-label.col-sm-2(for="electric_fee") Tiền điện
+			div.col-sm-2
+				input#electric_fee.form-control(name="electric_fee", type="text", value= electric_fee)
+		div.form-group
+			label.control-label.form-label-cust.col-sm-2(for="water_fee") Tiền nước
+			div.col-sm-2
+				input#water_fee.form-control(name="water_fee", type="text", value= water_fee)
+		div.form-group
+			label.control-label.form-label-cust.col-sm-2(for="clean_fee") Tiền vệ sinh
+			div.col-sm-2
+				input#clean_fee.form-control(name="clean_fee", type="text", value= clean_fee)
+		div.form-group
+			label.control-label.form-label-cust.col-sm-2(for="internet_fee") Tiền Internet
+			div.col-sm-2
+				input#internet_fee.form-control(name="internet_fee", type="text", value= internet_fee)
+		div.form-group
+			label.control-label.form-label-cust.col-sm-2(for="tv_fee") Tiền truyền hình cáp
+			div.col-sm-2
+				input#tv_fee.form-control(name="tv_fee", type="text", value= tv_fee)
+		div.form-group
+			label.control-label.form-label-cust.col-sm-2(for="other_fee") Chi phí khác
+			div.col-sm-2
+				input#other_fee.form-control(name="other_fee", type="text", value= other_fee)
+			label.control-label.form-label-cust.col-sm-1(for="note") Ghi chú
+			div.col-sm-5
+				textarea#note.form-control(name="note", type="text", value= note, rows="3")
+		h3 Thực thu
+		div.form-group
+			div.col-sm-2.col-sm-offset-2
+				input#receive.form-control(name="receive", type="text", value= receive)

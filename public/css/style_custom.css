@@ -48,3 +48,14 @@ body{ background:url(../images/px1.jpg) #fcf4db; border:0; font: 13px "Open Sans
   background-color: grey;
   color: white;
 }
+/*.table-cust{
+ table-layout: fixed;
+   
+    overflow: hidden;
+}*/
+.ui-datepicker-calendar {
+    display: none;
+}
+.hiddenForm {
+	display :none;
+}

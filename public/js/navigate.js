@@ -1,15 +1,27 @@
+// $(window).scroll(function() {
+//         sessionStorage.scrollTop = $('#leftmenu').scrollTop();
+// });
+
  $(function() {
+    
+    // if (sessionStorage.scrollTop != "undefined") {
+    //     $(window).scrollTop(sessionStorage.scrollTop);
+    // }
+
      $("[id^=edit]").click(function() {
          var rawId = ($(this).attr("id")).toString();
-         var firstUnderScoreIndex = rawId.indexOf("_");
-         var secondUnderScoreIndex = rawId.indexOf("_", firstUnderScoreIndex + 1);
-         var id = rawId.substring(firstUnderScoreIndex + 1, secondUnderScoreIndex);
-         var pageName = rawId.substring(secondUnderScoreIndex + 1, rawId.length);         
-         window.location.href = '/' + pageName + '/' + id;
+         var items = rawId.split("_");
+         var year = items[1];
+         var month = items[2];
+         var id = items[3];
+         var pageName = items[4];
+         window.location.href = '/' +  pageName + '/' + year + '/' + month + '/' + id;
      });
-     $('#baby-grid').DataTable({
-         paging: true
-     });
+    if ($('#baby-grid')!= null) {
+     	$('#baby-grid').DataTable({
+         	paging: true
+     	});
+ 	}
      // $('#apartment-grid').DataTable({
      //     paging: true
      // });
