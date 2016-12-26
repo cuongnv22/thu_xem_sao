@@ -59,3 +59,6 @@ body{ background:url(../images/px1.jpg) #fcf4db; border:0; font: 13px "Open Sans
 .hiddenForm {
 	display :none;
 }
+.column-chart-style{
+	width: 1000px; height: 500px;
+}

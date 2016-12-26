@@ -112,6 +112,7 @@ app.get('/babyAttendance', baby.getTimeTables);
 app.get('/apartments/:year/:month/:id', apartment.populateData);
 app.post('/apartments/:year/:month/:id', apartment.addOrUpdateApartment);
 app.get('/apartmentStatistic', apartment.getStatistic);
+app.post('/temporary', apartment.getTesting);
 
 // Create server
 http.createServer(app).listen(app.get('port'),function(){

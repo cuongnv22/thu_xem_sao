@@ -378,7 +378,19 @@ exports.addOrUpdateApartment = function(request, response, next) {
 	);
 };
 
+exports.getTesting = function(request, response, next) {
+	alert(request.body.data.toString());
+	var choosen_date = request.body.data.toString().split('/');
+	var month = choosen_date[0];
+	var year = choosen_date[1];
 
+	request.collections.apartments.find({year: 2016, month: 12}).toArray(function(error, apartments){
+		if (error) next(error);
+
+		response.json(apartments);
+	});
+
+}
 
 exports.getStatistic = function(request, response, next) {
 	var currentDate = new Date();

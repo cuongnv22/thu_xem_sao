@@ -25,7 +25,9 @@ block head
 	script(type='text/javascript', src='/js/navigate.js')
 	script(type='text/javascript', src='/js/validate.js')
 	script(type='text/javascript', src='/js/jquery.number.js')
+	script(type='text/javascript' src='https://www.gstatic.com/charts/loader.js')
 	script(type='text/javascript', src='/js/apartment-statistical.js')
+	
 
 
 block content
@@ -36,8 +38,12 @@ block content
 						a(href="#tabs-1") Thống kê đóng tiền
 					li
 						a(href="#tabs-2") Quản lý thu chi
+					li
+						a(href="#tabs-3") Thong ke	
 				div#tabs-1
 					include apartmentStatisticTab1
 				div#tabs-2
 					include apartmentStatisticTab2
+				div#tabs-3
+					include apartmentStatisticTab3	
 											

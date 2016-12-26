@@ -17,11 +17,11 @@
          var pageName = items[4];
          window.location.href = '/' +  pageName + '/' + year + '/' + month + '/' + id;
      });
-    if ($('#baby-grid')!= null) {
-     	$('#baby-grid').DataTable({
-         	paging: true
-     	});
- 	}
+   // if ($('#baby-grid')!= null) {
+   //  	$('#baby-grid').DataTable({
+   //      	paging: true
+   //  	});
+ 	//}
      // $('#apartment-grid').DataTable({
      //     paging: true
      // });
