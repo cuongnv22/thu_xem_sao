@@ -176,7 +176,7 @@ h6{ font-family:'Finger Paint'; font-weight:400; font-size:20px; color:#816d53; 
 
 .banners .banner_txt{padding: 15px 20px 0;}
 .banners .banner_txt .img{width: 100%;border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
-.banners .banner_txt .txt2{font-family:'Open Sans'; font-weight: 400; font-size: 14px; line-height: 20px; color: #fff; padding-top: 15px;}
+.banners .banner_txt .txt2{font-family:'Open Sans'; font-weight: 400; font-size: 18px; line-height: 20px; color: #fff; padding-top: 15px;}
 .banners .banner_txt .banner_link{text-align: right; height: 80px;}
 
 
@@ -210,7 +210,7 @@ transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-trans
 .ul1{ padding: 0; margin: 0; list-style: none;}
 .ul1 > li { padding:0px 0px 10px 0px; margin: 0px 0px 10px 0px;}
 .ul1 > li .txt1{ display: block; float: left; width: 60px; height: 60px; background: #efc043; text-align: center; line-height: 60px; font-family: 'Itim'; font-size: 26px; font-weight: 400; color: #fff; border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;}
-.ul1 > li .txt2{ display: block; float: none; margin-left: 85px;}
+.ul1 > li .txt2{ display: block; float: none; margin-left: 85px; font-size: 14px;}
 
 .button2{ display:inline-block; line-height:20px;  text-decoration: none; margin-top:10px; margin-bottom:10px; font-size:13px; font-family:'Finger Paint'; font-weight: 400; color:#fcf4db; white-space:nowrap; letter-spacing:0px; background:#bebc3e; padding: 11px 35px; border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;
 transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;
@@ -472,3 +472,4 @@ transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-trans
 	.page-404 .txt2{font-size: 50px; line-height: 50px;}
 	
 }
+.whoarewe {font-size: 14px;}
