@@ -1,131 +1,131 @@
 if(apartments == null || apartments.length == 0)
-						p
-							| Chưa có dữ liệu phòng trọ tháng này. 				
+	p
+		| Chưa có dữ liệu phòng trọ tháng này. 				
+else
+	if (old_apartments != null && old_apartments.length > 0)
+		h3.h3-title Danh sách đóng tiền tháng #{p_month} / #{p_year}
+		table#apartment-grid.table.table-bordered.table-cust
+			thead
+				tr
+					th Phòng số
+					th Số người
+					th Tên người						
+					th Tiền phòng						
+					th Số điện tháng trước
+					th Số điện tháng này
+					th Tiền điện
+					th Số nước tháng trước
+					th Số nước tháng này
+					th Tiền nước
+					th Tiền vệ sinh
+					th Chi phí khác				
+					th Tổng
+					th Trạng thái
+					th Ngày đóng
+					th Actions							
+					
+			tbody
+				each old_apartment, index in old_apartments
+					if old_apartment.status == "0"
+						tr(data-id="#{old_apartments._id}").tr_warning
+							td= old_apartment.apartmentId
+							td= old_apartment.person_no
+							td= old_apartment.person_names
+							td= old_apartment.room_fee
+							td= old_apartment.p_electric_no
+							td= old_apartment.c_electric_no
+							td= old_apartment.total_electric
+							td= old_apartment.p_water_no
+							td= old_apartment.c_water_no
+							td= old_apartment.total_water
+							td= old_apartment.clean_fee
+							td= old_apartment.other_fee
+							td= old_apartment.total_fee
+							td= old_apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
+							td.clickable= old_apartment.pay_date
+							td.action
+								button.btn.btn-default(id="edit_#{old_apartment.year}_#{old_apartment.month}_#{old_apartment.apartmentId}_apartments", type="button")
+									span.glyphicon.glyphicon-pencil Sửa										
 					else
-						if (old_apartments != null)
-							h3.h3-title Danh sách đóng tiền tháng 11
-							table#apartment-grid.table.table-bordered.table-cust
-								thead
-									tr
-										th Phòng số
-										th Số người
-										th Tên người						
-										th Tiền phòng						
-										th Số điện tháng trước
-										th Số điện tháng này
-										th Tiền điện
-										th Số nước tháng trước
-										th Số nước tháng này
-										th Tiền nước
-										th Tiền vệ sinh
-										th Chi phí khác				
-										th Tổng
-										th Trạng thái
-										th Ngày đóng
-										th Actions							
-										
-								tbody
-									each old_apartment, index in old_apartments
-										if old_apartment.status == "0"
-											tr(data-id="#{old_apartments._id}").tr_warning
-												td= old_apartment.apartmentId
-												td= old_apartment.person_no
-												td= old_apartment.person_names
-												td= old_apartment.room_fee
-												td= old_apartment.p_electric_no
-												td= old_apartment.c_electric_no
-												td= old_apartment.total_electric
-												td= old_apartment.p_water_no
-												td= old_apartment.c_water_no
-												td= old_apartment.total_water
-												td= old_apartment.clean_fee
-												td= old_apartment.other_fee
-												td= old_apartment.total_fee
-												td= old_apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
-												td.clickable= old_apartment.pay_date
-												td.action
-													button.btn.btn-default(id="edit_#{old_apartment.year}_#{old_apartment.month}_#{old_apartment.apartmentId}_apartments", type="button")
-														span.glyphicon.glyphicon-pencil Sửa										
-										else
-											tr(data-id="#{old_apartments._id}").tr_close
-												td= old_apartment.apartmentId
-												td= old_apartment.person_no
-												td= old_apartment.person_names
-												td= old_apartment.room_fee
-												td= old_apartment.p_electric_no
-												td= old_apartment.c_electric_no
-												td= old_apartment.total_electric
-												td= old_apartment.p_water_no
-												td= old_apartment.c_water_no
-												td= old_apartment.total_water
-												td= old_apartment.clean_fee
-												td= old_apartment.other_fee
-												td= old_apartment.total_fee
-												td= old_apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
-												td.clickable= old_apartment.pay_date
-												td.action
-													button.btn.btn-default(id="edit_#{old_apartment.year}_#{old_apartment.month}_#{old_apartment.apartmentId}_apartments", type="button")
-														span.glyphicon.glyphicon-pencil Sửa		
-						h3.h3-title Danh sách đóng tiền tháng 12
-						table#apartment-grid.table.table-bordered
-							thead
-								tr
-									th Phòng số
-									th Số người
-									th Tên người						
-									th Tiền phòng						
-									th Số điện tháng trước
-									th Số điện tháng này
-									th Tiền điện
-									th Số nước tháng trước
-									th Số nước tháng này
-									th Tiền nước
-									th Tiền vệ sinh
-									th Chi phí khác				
-									th Tổng
-									th Trạng thái
-									th Ngày đóng
-									th Actions							
-									
-							tbody
-								each apartment, index in apartments
-									if apartment.status == "0"
-										tr(data-id="#{apartment._id}").tr_warning
-											td= apartment.apartmentId
-											td= apartment.person_no
-											td= apartment.person_names
-											td= apartment.room_fee
-											td= apartment.p_electric_no
-											td= apartment.c_electric_no
-											td= apartment.total_electric
-											td= apartment.p_water_no
-											td= apartment.c_water_no
-											td= apartment.total_water
-											td= apartment.clean_fee
-											td= apartment.other_fee
-											td= apartment.total_fee
-											td= apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
-											td.clickable= apartment.pay_date
-											td.action
-												button.btn.btn-default(id="edit_#{apartment.year}_#{apartment.month}_#{apartment.apartmentId}_apartments", type="button")
-														span.glyphicon.glyphicon-pencil Sửa										
-									else
-										tr(data-id="#{apartment._id}").tr_close
-											td= apartment.apartmentId
-											td= apartment.person_no
-											td= apartment.person_names
-											td= apartment.room_fee
-											td= apartment.p_electric_no
-											td= apartment.c_electric_no
-											td= apartment.total_electric
-											td= apartment.p_water_no
-											td= apartment.c_water_no
-											td= apartment.total_water
-											td= apartment.clean_fee
-											td= apartment.other_fee
-											td= apartment.total_fee
-											td= apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
-											td.clickable= apartment.pay_date
-											td.action
-												button.btn.btn-default(id="edit_#{apartment.year}_#{apartment.month}_#{apartment.apartmentId}_apartments", type="button")
-														span.glyphicon.glyphicon-pencil Sửa
+						tr(data-id="#{old_apartments._id}").tr_close
+							td= old_apartment.apartmentId
+							td= old_apartment.person_no
+							td= old_apartment.person_names
+							td= old_apartment.room_fee
+							td= old_apartment.p_electric_no
+							td= old_apartment.c_electric_no
+							td= old_apartment.total_electric
+							td= old_apartment.p_water_no
+							td= old_apartment.c_water_no
+							td= old_apartment.total_water
+							td= old_apartment.clean_fee
+							td= old_apartment.other_fee
+							td= old_apartment.total_fee
+							td= old_apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
+							td.clickable= old_apartment.pay_date
+							td.action
+								button.btn.btn-default(id="edit_#{old_apartment.year}_#{old_apartment.month}_#{old_apartment.apartmentId}_apartments", type="button")
+									span.glyphicon.glyphicon-pencil Sửa
+	h3.h3-title Danh sách đóng tiền tháng #{c_month} / #{c_year}
+	table#apartment-grid.table.table-bordered
+		thead
+			tr
+				th Phòng số
+				th Số người
+				th Tên người						
+				th Tiền phòng						
+				th Số điện tháng trước
+				th Số điện tháng này
+				th Tiền điện
+				th Số nước tháng trước
+				th Số nước tháng này
+				th Tiền nước
+				th Tiền vệ sinh
+				th Chi phí khác				
+				th Tổng
+				th Trạng thái
+				th Ngày đóng
+				th Actions							
+				
+		tbody
+			each apartment, index in apartments
+				if apartment.status == "0"
+					tr(data-id="#{apartment._id}").tr_warning
+						td= apartment.apartmentId
+						td= apartment.person_no
+						td= apartment.person_names
+						td= apartment.room_fee
+						td= apartment.p_electric_no
+						td= apartment.c_electric_no
+						td= apartment.total_electric
+						td= apartment.p_water_no
+						td= apartment.c_water_no
+						td= apartment.total_water
+						td= apartment.clean_fee
+						td= apartment.other_fee
+						td= apartment.total_fee
+						td= apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
+						td.clickable= apartment.pay_date
+						td.action
+							button.btn.btn-default(id="edit_#{apartment.year}_#{apartment.month}_#{apartment.apartmentId}_apartments", type="button")
+									span.glyphicon.glyphicon-pencil Sửa										
+				else
+					tr(data-id="#{apartment._id}").tr_close
+						td= apartment.apartmentId
+						td= apartment.person_no
+						td= apartment.person_names
+						td= apartment.room_fee
+						td= apartment.p_electric_no
+						td= apartment.c_electric_no
+						td= apartment.total_electric
+						td= apartment.p_water_no
+						td= apartment.c_water_no
+						td= apartment.total_water
+						td= apartment.clean_fee
+						td= apartment.other_fee
+						td= apartment.total_fee
+						td= apartment.status == "1" ? "Đã đóng" : "Chưa đóng"
+						td.clickable= apartment.pay_date
+						td.action
+							button.btn.btn-default(id="edit_#{apartment.year}_#{apartment.month}_#{apartment.apartmentId}_apartments", type="button")
+									span.glyphicon.glyphicon-pencil Sửa

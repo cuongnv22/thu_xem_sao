@@ -1,49 +1,70 @@
-form#apartment-tab2-search.form-horizontal(role="form" novalidate)
+form#apartment-tab2-search-form.form-horizontal(role="form" novalidate)
 	.row								
 		div.form-group
 			label.control-label.form-label-cust.col-sm-2(for="choosen_date") Chọn tháng :
 			div.col-sm-2
 				input#choosen_date.date-picker.form-control(name="choosenDate")
 			div.col-sm-2
-				button#showStatistic.btn.btn-default(type="submit") Hiển thị
+				button#showStatistic.btn.btn-default(type="submit" disabled) Hiển thị
 hr.bigHr
-h3.h3-title Thông tin thu chi tháng 12
+h3#title_info.h3-title
 form#apartment-tab2-content.form-horizontal(method="POST" role="form" novalidate)
 	.row
+		div#alert.alert.alert-success.hidden-div
 		h3 Thu	
 		div.form-group
 			label.control-label.col-sm-2(for="total_take") Tổng thu phòng trọ
 			div.col-sm-2
-				input#total_take.form-control(name="total_take", type="text", value= total_take)
+				input#total_take.form-control(name="total_take", type="text", value= 0)
+			a#detail_link(href="#") Chi tiết
+		div.form-group
+			div#detail_div.col-sm-3.col-sm-offset-2.hidden-div
+				table#detail_table.table
+					thead
+						th Phòng số
+						th Tiền
+					tbody						
+
 		h3 Chi
 		div.form-group
 			label.control-label.col-sm-2(for="electric_fee") Tiền điện
 			div.col-sm-2
-				input#electric_fee.form-control(name="electric_fee", type="text", value= electric_fee)
+				input#electric_fee.form-control(name="electric_fee", type="text", value= 0)
 		div.form-group
 			label.control-label.form-label-cust.col-sm-2(for="water_fee") Tiền nước
 			div.col-sm-2
-				input#water_fee.form-control(name="water_fee", type="text", value= water_fee)
+				input#water_fee.form-control(name="water_fee", type="text", value= 0)
 		div.form-group
 			label.control-label.form-label-cust.col-sm-2(for="clean_fee") Tiền vệ sinh
 			div.col-sm-2
-				input#clean_fee.form-control(name="clean_fee", type="text", value= clean_fee)
+				input#clean_fee.form-control(name="clean_fee", type="text", value= 0)
 		div.form-group
 			label.control-label.form-label-cust.col-sm-2(for="internet_fee") Tiền Internet
 			div.col-sm-2
-				input#internet_fee.form-control(name="internet_fee", type="text", value= internet_fee)
+				input#internet_fee.form-control(name="internet_fee", type="text", value= 0)
 		div.form-group
 			label.control-label.form-label-cust.col-sm-2(for="tv_fee") Tiền truyền hình cáp
 			div.col-sm-2
-				input#tv_fee.form-control(name="tv_fee", type="text", value= tv_fee)
+				input#tv_fee.form-control(name="tv_fee", type="text", value= 0)
 		div.form-group
 			label.control-label.form-label-cust.col-sm-2(for="other_fee") Chi phí khác
 			div.col-sm-2
-				input#other_fee.form-control(name="other_fee", type="text", value= other_fee)
+				input#other_fee.form-control(name="other_fee", type="text", value= 0)
 			label.control-label.form-label-cust.col-sm-1(for="note") Ghi chú
 			div.col-sm-5
 				textarea#note.form-control(name="note", type="text", value= note, rows="3")
+		div.form-group
+			label.control-label.form-label-cust.col-sm-2(for="total_expenditure") Tổng chi
+			div.col-sm-2
+				input#total_expenditure.form-control(name="total_expenditure", type="text", value= 0 readonly)
 		h3 Thực thu
 		div.form-group
 			div.col-sm-2.col-sm-offset-2
-				input#receive.form-control(name="receive", type="text", value= receive)
+				input#receive.form-control(name="receive", type="text", value= 0)
+		div.formgroup
+			div.col-sm-1 
+				button#btn_save.btn.btn-primary.btn-default(type="submit") Lưu lại
+			div.col-sm-1.col-sm-offset-8
+				button#btn_final.btn.btn-warning.btn-default(type="submit") Chốt
+			div.col-sm-1.col-sm-offset-10
+				button#btn_forgive.btn.btn-info.btn-default(type="submit") Thay đổi lại sau chốt

@@ -20,7 +20,9 @@ $(function() {
     	var totalElectric = parseInt($('#total_electric').val());
     	var roomFee = parseInt($('#room_fee').val());
     	var otherFee = parseInt($('#other_fee').val());
-    	var totalFee = totalWater + totalElectric + roomFee + otherFee;
+        var tvFee = parseInt($('#tv_fee').val());
+        var internetFee = parseInt($('#internet_fee').val());
+    	var totalFee = totalWater + totalElectric + roomFee + otherFee + tvFee + internetFee;
     	$('#total_fee').val(totalFee);
     }
 
@@ -37,7 +39,7 @@ $(function() {
     	totalCal();
 	});
 
-	$('#other_fee, #clean_fee, #room_fee').focusout(function() {    	
+	$('#other_fee, #clean_fee, #room_fee, #internet_fee, #tv_fee').focusout(function() {    	
     	totalCal();
 	});
 
@@ -53,6 +55,8 @@ $(function() {
     $('#c_water_no').number( true);
     $('#electric_unit').number( true);
     $('#water_unit').number( true);
+    $('#internet_fee').number( true);
+    $('#tv_fee').number( true);
 });
 
 

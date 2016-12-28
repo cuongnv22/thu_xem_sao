@@ -1,3 +1,13 @@
-button#load_chart.btn.btn-default Load Chart
-.row
+form#apartment-tab3-content.form-horizontal(method="POST" role="form" novalidate)
+	.row
+		div.col-sm-1
+			input(name="choosen", type="radio",  value= "1")				
+		div.form-group
+			label.control-label.col-sm-2(for="year_statistical") Thống kê theo năm
+			div.col-sm-2
+				select#year_statistical.selectpicker.form-control(name="year_statistical")
+					for item in years
+						option(value="#{item['id']}") #{item["name"]}
+			button#load_chart.btn.btn-default(type="submit") Hiển thị
+div.chart-container
 	div#columnchart_material.column-chart-style

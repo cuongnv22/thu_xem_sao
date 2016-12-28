@@ -20,9 +20,12 @@ var  collections = {
     babyInfo: db.collection('babyInfo'),
     teachers: db.collection('teacherInfo'),
     users: db.collection('users'),
-    apartments: db.collection('apartments')
+    apartments: db.collection('apartments'),
+    revenueExpenditures: db.collection('revenueExpenditures')
   };
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(function(request, response, next) {
   if (!collections.babyInfo) return next(new Error("No collections."))
@@ -36,8 +39,7 @@ app.set('view engine', 'jade');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'html')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(validator([]));
 app.use(session({secret: '2C44774A-D649-4D44-9535-46E296EF984F'}));
 app.use(everyauth.middleware());
@@ -112,7 +114,11 @@ app.get('/babyAttendance', baby.getTimeTables);
 app.get('/apartments/:year/:month/:id', apartment.populateData);
 app.post('/apartments/:year/:month/:id', apartment.addOrUpdateApartment);
 app.get('/apartmentStatistic', apartment.getStatistic);
-app.post('/temporary', apartment.getTesting);
+app.post('/temporary', apartment.getRevenueAndExpenditure);
+app.post('/temporary1', apartment.getApartmentList);
+app.post('/temporary2', apartment.insertOrUpdateRevenueAndExpenditure);
+app.post('/temporary3', apartment.loadChart);
+
 
 // Create server
 http.createServer(app).listen(app.get('port'),function(){

@@ -23,7 +23,7 @@ block head
 	script(type='text/javascript', src='/js/controls.js')
 	script(type='text/javascript', src='//cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js')
 	script(type='text/javascript', src='/js/navigate.js')
-	script(type='text/javascript', src='/js/validate.js')
+	
 	script(type='text/javascript', src='/js/jquery.number.js')
 	script(type='text/javascript' src='https://www.gstatic.com/charts/loader.js')
 	script(type='text/javascript', src='/js/apartment-statistical.js')
@@ -33,13 +33,13 @@ block head
 block content
 	div.col-sm-10.col-sm-offset-3.col-md-10.col-md-offset-2.main
 		#tabs
-				ul
+				ul 
 					li
 						a(href="#tabs-1") Thống kê đóng tiền
 					li
 						a(href="#tabs-2") Quản lý thu chi
 					li
-						a(href="#tabs-3") Thong ke	
+						a(href="#tabs-3") Thống kê	
 				div#tabs-1
 					include apartmentStatisticTab1
 				div#tabs-2

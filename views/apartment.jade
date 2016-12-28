@@ -44,12 +44,11 @@ block content
 			#tabs-2
 
 			#tabs-1
-				div= error			
+				include messages			
 				#fields
 					h3.h3-title Phòng Số #{apartmentId}: Tháng #{month} Năm #{year}
 					form#apartment-form.form-horizontal(method="POST" role="form" novalidate)
-						.row
-								
+						.row								
 							div.form-group
 								label.control-label.form-label-cust.col-sm-2(for="person_no") Số người :
 								div.col-sm-1
@@ -90,6 +89,15 @@ block content
 									input#total_water.form-control(name="total_water", type="text", placeHolder="Tiền nước" readonly, value=total_water)
 
 							div.form-group
+																								
+								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="clean_fee") Tiền vệ sinh
+								div.col-sm-2
+									input#clean_fee.form-control(name="clean_fee", type="text", placeHolder="Tiền vệ sinh", value = clean_fee)
+							div.form-group						
+								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="internet_fee") Tiền Internet
+								div.col-sm-2
+									input#internet_fee.form-control(name="internet_fee", type="text", placeHolder="Tiền Internet" value = internet_fee)
+							div.form-group
 								label.control-label.form-label-cust.col-sm-2(for="status") Tình trạng :						
 								div.col-sm-3
 									label.radio-inline
@@ -97,19 +105,20 @@ block content
 										| Đã đóng										
 									label.radio-inline
 										input(name="status", type="radio",  value= "0", checked=(status!=1))
-										| Chưa đóng																	
-								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="clean_fee") Tiền vệ sinh
+										| Chưa đóng						
+								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="tv_fee") Truyền hình cáp
 								div.col-sm-2
-									input#clean_fee.form-control(name="clean_fee", type="text", placeHolder="Tiền vệ sinh", value = clean_fee)
+									input#tv_fee.form-control(name="tv_fee", type="text", placeHolder="Truyền hình cáp" value = tv_fee)
 							div.form-group
 								label.control-label.form-label-cust.col-sm-2(for="pay_date") Thời gian đóng :	
 								div.col-sm-2.input-group.date
 									input#pay_date.form-control(type="text" name="pay_date" value=pay_date)
 									span.input-group-addon
-										i.glyphicon.glyphicon-th
+										i.glyphicon.glyphicon-th						
 								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="other_fee") Chi phí khác
 								div.col-sm-2
 									input#other_fee.form-control(name="other_fee", type="text", placeHolder="Chi phí khác" value = other_fee)
+
 							hr.bigHr.col-sm-offset-7.col-sm-4
 							div.form-group													
 								label.control-label.form-label-cust.col-sm-2.col-sm-offset-7(for="total_fee") Tổng	phải đóng

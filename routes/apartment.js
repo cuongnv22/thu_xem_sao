@@ -131,7 +131,50 @@ var apartmentlist = [
 		apartmentId: '33',
 		name: 'Phòng 33'		
 	},
-]
+];
+
+var years = [
+	{		
+		id: 2016,
+		name: '2016'		
+	},
+	{		
+		id: 2017,
+		name: '2017'		
+	},
+	{		
+		id: 2018,
+		name: '2018'		
+	},
+	{		
+		id: 2019,
+		name: '2019'		
+	},
+	{		
+		id: 2020,
+		name: '2020'		
+	},
+	{		
+		id: 2021,
+		name: '2021'		
+	},
+	{		
+		id: 2022,
+		name: '2022'		
+	},
+	{		
+		id: 2023,
+		name: '2023'		
+	},
+	{		
+		id: 2024,
+		name: '2024'		
+	},
+	{		
+		id: 2025,
+		name: '2025'		
+	},
+];
 
 
 exports.populateData = function(request, response, next) {	
@@ -150,8 +193,11 @@ exports.populateData = function(request, response, next) {
 
 	var room_fee = 850000;
 	var clean_fee = 15000;
+	var internet_fee = 0;
+	var tv_fee = 0;
 	var other_fee = 0;
 	var total_fee = 0;
+
 	var status = -1;
 	var pay_date = "";
 
@@ -203,6 +249,8 @@ exports.populateData = function(request, response, next) {
 				water_unit = apartment.water_unit;
 				total_water = apartment.total_water;
 				room_fee = apartment.room_fee;
+				internet_fee = apartment.internet_fee;
+				tv_fee = apartment.tv_fee;
 				clean_fee = apartment.clean_fee;
 				other_fee = apartment.other_fee;
 				total_fee = apartment.total_fee;
@@ -227,12 +275,15 @@ exports.populateData = function(request, response, next) {
 											total_electric: total_electric,
 											total_water: total_water,
 											clean_fee: clean_fee,
+											tv_fee : tv_fee,
+											internet_fee : internet_fee,
 											other_fee: other_fee,
 											total_fee: total_fee,
 											status: status,
 											pay_date: pay_date,
 											c_year: c_year,
-											c_month: c_month
+											c_month: c_month,
+											flash : null
 										});
 		});
 	});		
@@ -243,7 +294,6 @@ function convert2Int(fee){
 }
 
 exports.addOrUpdateApartment = function(request, response, next) {
-
 
 	var apartmentId = request.params.id;
 	var person_no = convert2Int(request.body.person_no);
@@ -258,14 +308,18 @@ exports.addOrUpdateApartment = function(request, response, next) {
 	var total_electric = convert2Int(request.body.total_electric);
 	var total_water = convert2Int(request.body.total_water);
 	var clean_fee = convert2Int(request.body.clean_fee);
+	var internet_fee = convert2Int(request.body.internet_fee);
+	var tv_fee =  convert2Int(request.body.tv_fee);
 	var other_fee = convert2Int(request.body.other_fee);
 	var total_fee = convert2Int(request.body.total_fee);
 	var status = request.body.status;
 	var pay_date = request.body.pay_date;
-
+	
+	var year = convert2Int(request.params.year);
+	var month = convert2Int(request.params.month);
 	var currentDate = new Date();
-	var month = currentDate.getMonth() + 1;
-	var year =  currentDate.getFullYear();
+	var c_month = currentDate.getMonth() + 1;
+	var c_year =  currentDate.getFullYear();
 
 	var apartment_data = {
 		apartmentId : apartmentId,
@@ -283,6 +337,8 @@ exports.addOrUpdateApartment = function(request, response, next) {
 		total_electric : total_electric,
 		total_water : total_water,
 		clean_fee : clean_fee,
+		internet_fee : internet_fee,
+		tv_fee : tv_fee,
 		other_fee : other_fee,
 		total_fee : total_fee,
 		status: status,
@@ -310,11 +366,14 @@ exports.addOrUpdateApartment = function(request, response, next) {
 						total_electric: total_electric,
 						total_water: total_water,
 						clean_fee: clean_fee,
+						internet_fee : internet_fee,
+						tv_fee : tv_fee,
 						other_fee: other_fee,
 						total_fee: total_fee,
 						status: status,
 						pay_date: pay_date
 				}, function(error, updateResponse){
+					flash = { type: 'alert-success', messages: "Sửa thông tin thành công!!!" };
 					response.render('apartment', {apartmentlist: apartmentlist,
 											apartmentId: apartmentId, 
 											month: month, 
@@ -331,12 +390,15 @@ exports.addOrUpdateApartment = function(request, response, next) {
 											total_electric: total_electric,
 											total_water: total_water,
 											clean_fee: clean_fee,
+											internet_fee : internet_fee,
+											tv_fee : tv_fee,
 											other_fee: other_fee,
 											total_fee: total_fee,
 											status: status,
 											pay_date: pay_date,
-											c_year: year,
-											c_month: month
+											c_year: c_year,
+											c_month: c_month,
+											flash: flash
 									});
 				});							
 			}							
@@ -348,6 +410,7 @@ exports.addOrUpdateApartment = function(request, response, next) {
 					  flash = { type: 'alert-danger', messages: errors };
 					  response.send({ flash: flash });	  
 					} else {
+						flash = { type: 'alert-success', messages: "Tạo thông tin thành công!!!" };
 						response.render('apartment', {apartmentlist: apartmentlist,
 											apartmentId: apartmentId, 
 											month: month, 
@@ -364,12 +427,15 @@ exports.addOrUpdateApartment = function(request, response, next) {
 											total_electric: total_electric,
 											total_water: total_water,
 											clean_fee: clean_fee,
+											internet_fee : internet_fee,
+											tv_fee : tv_fee,
 											other_fee: other_fee,
 											total_fee: total_fee,
 											status: status,
 											pay_date: pay_date,
-											c_year: year,
-											c_month: month
+											c_year: c_year,
+											c_month: c_month,
+											flash : flash
 										});
 					}
 				});
@@ -378,19 +444,90 @@ exports.addOrUpdateApartment = function(request, response, next) {
 	);
 };
 
-exports.getTesting = function(request, response, next) {
-	alert(request.body.data.toString());
-	var choosen_date = request.body.data.toString().split('/');
-	var month = choosen_date[0];
-	var year = choosen_date[1];
+exports.getApartmentList = function(request, response, next) {	
+	var choosen_date = request.body.choosen_date.toString().split('/');	
+	var month = convert2Int(choosen_date[0]);
+	var year = convert2Int(choosen_date[1]);
 
-	request.collections.apartments.find({year: 2016, month: 12}).toArray(function(error, apartments){
+	request.collections.apartments.find({year: year, month: month}).sort({status: -1}).toArray(function(error, apartments){
 		if (error) next(error);
-
 		response.json(apartments);
 	});
-
 }
+
+exports.getRevenueAndExpenditure = function(request, response, next) {
+	var choosen_date = request.body.choosen_date.toString().split('/');	
+	var month = convert2Int(choosen_date[0]);
+	var year = convert2Int(choosen_date[1]);
+
+	request.collections.revenueExpenditures.findOne({year: year, month: month}, function(error, revenueExpenditures){		
+		if (error) next(error);
+		if (revenueExpenditures == null)
+			response.json("");
+		else
+			response.json(revenueExpenditures);
+	});
+}
+
+exports.insertOrUpdateRevenueAndExpenditure = function(request, response, next) {
+	
+	var month = convert2Int(request.body.month);
+	var year = convert2Int(request.body.year);
+	var total_take = convert2Int(request.body.total_take);
+    var electric_fee = convert2Int(request.body.electric_fee);
+    var water_fee = convert2Int(request.body.water_fee);
+    var clean_fee = convert2Int(request.body.clean_fee);
+    var internet_fee = convert2Int(request.body.internet_fee);
+    var tv_fee = convert2Int(request.body.tv_fee);
+    var other_fee = convert2Int(request.body.other_fee);
+    var note = request.body.note;
+    var total_expenditure = convert2Int(request.body.total_expenditure);
+    var total_receive = convert2Int(request.body.total_receive);
+    var isFinal = request.body.isFinal;
+
+	request.collections.revenueExpenditures.findOne({year: year, month: month}, function(error, revenueExpenditures){		
+		if(revenueExpenditures != null) {
+			request.collections.revenueExpenditures.update({year: year, 
+															month: month},{
+															year: year,
+															month: month,
+															total_take : total_take,
+															electric_fee : electric_fee,
+															water_fee : water_fee,
+															clean_fee : clean_fee,
+															internet_fee : internet_fee,
+															tv_fee : tv_fee,
+															other_fee : other_fee,
+															total_expenditure : total_expenditure,
+															total_receive : total_receive,
+															isFinal : isFinal,
+															note : note}, function(error, updateResponse){
+																if (error) next(error);
+																response.json(updateResponse);
+															});
+
+		}
+		else {
+			request.collections.revenueExpenditures.insert({year: year, 
+															month: month,
+															total_take : total_take,
+															electric_fee : electric_fee,
+															water_fee : water_fee,
+															clean_fee : clean_fee,
+															internet_fee : internet_fee,
+															tv_fee : tv_fee,
+															other_fee : other_fee,
+															total_expenditure : total_expenditure,
+															total_receive : total_receive,
+															isFinal : isFinal,
+															note : note}, function(error, insertResponse){
+																if (error) next(error);
+																response.json(insertResponse);
+															});
+		}
+	});
+}
+
 
 exports.getStatistic = function(request, response, next) {
 	var currentDate = new Date();
@@ -404,21 +541,26 @@ exports.getStatistic = function(request, response, next) {
 		yearOfPreviousMonth = year - 1;
 	}
 	
-	request.collections.apartments.find({year: yearOfPreviousMonth, month: previousMonth}).sort({status: 1}).toArray(function(error, old_apartments){
+	request.collections.apartments.find({year: yearOfPreviousMonth, month: previousMonth, status: "0"}).sort({status: 1}).toArray(function(error, old_apartments){
 		request.collections.apartments.find({year: year, month: month}).sort({status: 1}).toArray(function(error, apartments){
 			response.render('apartmentStatistic', {
 								apartmentlist: apartmentlist,
 								isSatistical: true,
 								apartments : apartments, 
 								old_apartments : old_apartments,
-								year: year,
-								month: month,
+								p_year: yearOfPreviousMonth,
+								p_month: previousMonth,
 								c_year: year,
-								c_month: month
+								c_month: month,
+								years: years
 							});
 		});
 	});
+};
 
-	
-	
+exports.loadChart = function(request, response, next){
+	var choosen_year = convert2Int(request.body.choosen_year.toString());
+    request.collections.revenueExpenditures.find({year: choosen_year}).sort({month: 1}).toArray(function(error, revenueExpenditures){
+    	response.json(revenueExpenditures);
+    });
 };
